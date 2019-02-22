@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Cinema" Class="DBCordDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=Cinema;Persist Security Info=True;User ID=sa;Pooling=False" SettingsObjectName="LINQ02.Properties.Settings" SettingsPropertyName="CinemaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Air" Member="Airs">
+    <Type Name="Air">
+      <Column Name="airID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="airMovID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="airTheID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="airTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Movie_Air" Member="Movie" ThisKey="airMovID" OtherKey="movID" Type="Movie" IsForeignKey="true" />
+      <Association Name="Theater_Air" Member="Theater" ThisKey="airTheID" OtherKey="theID" Type="Theater" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Movie" Member="Movies">
+    <Type Name="Movie">
+      <Column Name="movID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="movName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Movie_Air" Member="Airs" ThisKey="movID" OtherKey="airMovID" Type="Air" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Theater" Member="Theaters">
+    <Type Name="Theater">
+      <Column Name="theID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="theName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Theater_Air" Member="Airs" ThisKey="theID" OtherKey="airTheID" Type="Air" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AirOutput" Member="AirOutputs">
+    <Type Name="AirOutput">
+      <Column Name="movName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="theName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="airTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SP_Insert_Movie" Method="SP_Insert_Movie">
+    <Parameter Name="mname" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

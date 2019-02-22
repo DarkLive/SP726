@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<brands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <brand>
+    <car>
+      <BrandName>Audi</BrandName>
+      <Model>S4</Model>
+      <EngineCap>2000</EngineCap>
+    </car>
+    <car>
+      <BrandName>TOFAŞ</BrandName>
+      <Model>Doğan SLX</Model>
+      <EngineCap>1333</EngineCap>
+    </car>
+  </brand>
+</brands>

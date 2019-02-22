@@ -1,0 +1,13 @@
+USE egeturan;
+--SELECT DISTINCT uPassword FROM dbo.Table_1;
+--SELECT * FROM dbo.Table_1 WHERE uName='sm1';
+--SELECT * FROM dbo.Table_1 WHERE uID >= 2;
+--SELECT * FROM dbo.Table_1 WHERE uID BETWEEN 3 AND 5;
+--SELECT * FROM dbo.Table_1 WHERE uID <> 2;
+--SELECT * FROM dbo.Table_1 WHERE uProfession LIKE '%octor';
+--SELECT * FROM dbo.Table_1 WHERE uProfession LIKE 'Doc___';
+--SELECT * FROM dbo.Table_1 WHERE uProfession IN ('teacher' , 'student');
+--SELECT * FROM dbo.Table_1 WHERE uName='sm2' AND uProfession='teacher';
+--SELECT * FROM dbo.Table_1 WHERE uName='sm2' OR uProfession='student';
+--SELECT * FROM dbo.Table_1 WHERE NOT uProfession='teacher';
+--SELECT * FROM dbo.Table_1 WHERE uName='serdar' AND (uProfession = 'journalist' OR uProfession = 'reporter');

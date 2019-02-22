@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<schoolname>TEST
+  <student>
+    <studentno>1</studentno>
+    <studentname>Smart</studentname>
+    <studentclass>404</studentclass>
+    <studentbirthday>01.03.1996</studentbirthday>
+  </student>
+  <student>
+    <studentno>2</studentno>
+  <studentname>Pro</studentname>
+    <studentclass>405</studentclass>
+    <studentbirthday>03.03.1996</studentbirthday>
+  </student>
+  <student>
+    <studentno>6</studentno>
+    <studentname>test</studentname>
+    <studentclass>test</studentclass>
+    <studentbirthday>5</studentbirthday>
+  </student>
+  <student>
+    <studentno>10</studentno>
+    <studentname>Ege</studentname>
+    <studentclass>404</studentclass>
+    <studentbirthday>12.12.2018</studentbirthday>
+  </student>
+</schoolname>

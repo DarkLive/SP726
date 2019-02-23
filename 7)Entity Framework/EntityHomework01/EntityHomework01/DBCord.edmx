@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EntityHomework01DB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="comID" />
+          </Key>
+          <Property Name="comID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpuBrandID" Type="int" Nullable="false" />
+          <Property Name="opeSysID" Type="int" Nullable="false" />
+          <Property Name="ramSize" Type="tinyint" Nullable="false" />
+          <Property Name="diskSize" Type="tinyint" Nullable="false" />
+          <Property Name="ssdSize" Type="tinyint" Nullable="false" />
+          <Property Name="price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CPU">
+          <Key>
+            <PropertyRef Name="cpuID" />
+          </Key>
+          <Property Name="cpuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpuName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperatingSystem">
+          <Key>
+            <PropertyRef Name="osID" />
+          </Key>
+          <Property Name="osID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="osName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EntityHomework01.dbo.ShowComputers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ShowComputers">
+          <Key>
+            <PropertyRef Name="comID" />
+            <PropertyRef Name="cpuName" />
+            <PropertyRef Name="osName" />
+            <PropertyRef Name="ramSize" />
+            <PropertyRef Name="diskSize" />
+            <PropertyRef Name="ssdSize" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="comID" Type="int" Nullable="false" />
+          <Property Name="cpuName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="osName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ramSize" Type="tinyint" Nullable="false" />
+          <Property Name="diskSize" Type="tinyint" Nullable="false" />
+          <Property Name="ssdSize" Type="tinyint" Nullable="false" />
+          <Property Name="price" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Computer_CPU">
+          <End Role="CPU" Type="Self.CPU" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPU">
+              <PropertyRef Name="cpuID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="cpuBrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_OperatingSystem">
+          <End Role="OperatingSystem" Type="Self.OperatingSystem" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingSystem">
+              <PropertyRef Name="osID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="opeSysID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntityHomework01DBStoreContainer">
+          <EntitySet Name="Computer" EntityType="Self.Computer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CPU" EntityType="Self.CPU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperatingSystem" EntityType="Self.OperatingSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShowComputers" EntityType="Self.ShowComputers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ShowComputers].[comID] AS [comID], 
+    [ShowComputers].[cpuName] AS [cpuName], 
+    [ShowComputers].[osName] AS [osName], 
+    [ShowComputers].[ramSize] AS [ramSize], 
+    [ShowComputers].[diskSize] AS [diskSize], 
+    [ShowComputers].[ssdSize] AS [ssdSize], 
+    [ShowComputers].[price] AS [price]
+    FROM [dbo].[ShowComputers] AS [ShowComputers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Computer_CPU" Association="Self.FK_Computer_CPU">
+            <End Role="CPU" EntitySet="CPU" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_OperatingSystem" Association="Self.FK_Computer_OperatingSystem">
+            <End Role="OperatingSystem" EntitySet="OperatingSystem" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EntityHomework01DB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="comID" />
+          </Key>
+          <Property Name="comID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpuBrandID" Type="Int32" Nullable="false" />
+          <Property Name="opeSysID" Type="Int32" Nullable="false" />
+          <Property Name="ramSize" Type="EntityHomework01DB.SizeRAM" Nullable="false" />
+          <Property Name="diskSize" Type="EntityHomework01DB.SizeDISK" Nullable="false" />
+          <Property Name="ssdSize" Type="EntityHomework01DB.SizeSSD" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="CPU" Relationship="Self.FK_Computer_CPU" FromRole="Computer" ToRole="CPU" />
+          <NavigationProperty Name="OperatingSystem" Relationship="Self.FK_Computer_OperatingSystem" FromRole="Computer" ToRole="OperatingSystem" />
+        </EntityType>
+        <EntityType Name="CPU">
+          <Key>
+            <PropertyRef Name="cpuID" />
+          </Key>
+          <Property Name="cpuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computers" Relationship="Self.FK_Computer_CPU" FromRole="CPU" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="OperatingSystem">
+          <Key>
+            <PropertyRef Name="osID" />
+          </Key>
+          <Property Name="osID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="osName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computers" Relationship="Self.FK_Computer_OperatingSystem" FromRole="OperatingSystem" ToRole="Computer" />
+        </EntityType>
+        <Association Name="FK_Computer_CPU">
+          <End Role="CPU" Type="Self.CPU" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPU">
+              <PropertyRef Name="cpuID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="cpuBrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_OperatingSystem">
+          <End Role="OperatingSystem" Type="Self.OperatingSystem" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatingSystem">
+              <PropertyRef Name="osID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="opeSysID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntityHomework01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Computers" EntityType="Self.Computer" />
+          <EntitySet Name="CPUs" EntityType="Self.CPU" />
+          <EntitySet Name="OperatingSystems" EntityType="Self.OperatingSystem" />
+          <AssociationSet Name="FK_Computer_CPU" Association="Self.FK_Computer_CPU">
+            <End Role="CPU" EntitySet="CPUs" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_OperatingSystem" Association="Self.FK_Computer_OperatingSystem">
+            <End Role="OperatingSystem" EntitySet="OperatingSystems" />
+            <End Role="Computer" EntitySet="Computers" />
+          </AssociationSet>
+          <EntitySet Name="ShowComputers" EntityType="EntityHomework01DB.ShowComputer" />
+        </EntityContainer>
+        <EnumType Name="SizeRAM" UnderlyingType="Byte">
+          <Member Name="RAM2GB" Value="0" />
+          <Member Name="RAM4GB" Value="1" />
+          <Member Name="RAM8GB" Value="2" />
+          <Member Name="RAM12GB" Value="3" />
+          <Member Name="RAM16GB" Value="4" />
+          <Member Name="RAM32GB" Value="5" />
+          <Member Name="RAM64GB" Value="6" />
+        </EnumType>
+        <EnumType Name="SizeDISK" UnderlyingType="Byte">
+          <Member Name="HDD512GB" Value="0" />
+          <Member Name="HDD1TB" Value="1" />
+          <Member Name="HDD2TB" Value="2" />
+          <Member Name="HDD4TB" Value="3" />
+          <Member Name="HDD8TB" Value="4" />
+        </EnumType>
+        <EnumType Name="SizeSSD" UnderlyingType="Byte">
+          <Member Name="SSD128GB" Value="0" />
+          <Member Name="SSD190GB" Value="1" />
+          <Member Name="SSD240GB" Value="2" />
+          <Member Name="SSD256GB" Value="3" />
+          <Member Name="SSD512GB" Value="4" />
+          <Member Name="SSD1TB" Value="5" />
+          <Member Name="SSD2TB" Value="6" />
+        </EnumType>
+        <EntityType Name="ShowComputer">
+          <Key>
+            <PropertyRef Name="comID" />
+            <PropertyRef Name="cpuName" />
+            <PropertyRef Name="osName" />
+            <PropertyRef Name="ramSize" />
+            <PropertyRef Name="diskSize" />
+            <PropertyRef Name="ssdSize" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="comID" Type="Int32" Nullable="false" />
+          <Property Name="cpuName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="osName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ramSize" Type="Byte" Nullable="false" />
+          <Property Name="diskSize" Type="Byte" Nullable="false" />
+          <Property Name="ssdSize" Type="Byte" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntityHomework01DBStoreContainer" CdmEntityContainer="EntityHomework01Entities">
+          <EntitySetMapping Name="Computers">
+            <EntityTypeMapping TypeName="EntityHomework01DB.Computer">
+              <MappingFragment StoreEntitySet="Computer">
+                <ScalarProperty Name="comID" ColumnName="comID" />
+                <ScalarProperty Name="cpuBrandID" ColumnName="cpuBrandID" />
+                <ScalarProperty Name="opeSysID" ColumnName="opeSysID" />
+                <ScalarProperty Name="ramSize" ColumnName="ramSize" />
+                <ScalarProperty Name="diskSize" ColumnName="diskSize" />
+                <ScalarProperty Name="ssdSize" ColumnName="ssdSize" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPUs">
+            <EntityTypeMapping TypeName="EntityHomework01DB.CPU">
+              <MappingFragment StoreEntitySet="CPU">
+                <ScalarProperty Name="cpuID" ColumnName="cpuID" />
+                <ScalarProperty Name="cpuName" ColumnName="cpuName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperatingSystems">
+            <EntityTypeMapping TypeName="EntityHomework01DB.OperatingSystem">
+              <MappingFragment StoreEntitySet="OperatingSystem">
+                <ScalarProperty Name="osID" ColumnName="osID" />
+                <ScalarProperty Name="osName" ColumnName="osName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShowComputers">
+            <EntityTypeMapping TypeName="EntityHomework01DB.ShowComputer">
+              <MappingFragment StoreEntitySet="ShowComputers">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ssdSize" ColumnName="ssdSize" />
+                <ScalarProperty Name="diskSize" ColumnName="diskSize" />
+                <ScalarProperty Name="ramSize" ColumnName="ramSize" />
+                <ScalarProperty Name="osName" ColumnName="osName" />
+                <ScalarProperty Name="cpuName" ColumnName="cpuName" />
+                <ScalarProperty Name="comID" ColumnName="comID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

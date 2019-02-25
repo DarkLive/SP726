@@ -1,0 +1,3 @@
+PM> enable-migrations –EnableAutomaticMigration:$true -Force
+
+PM> Update-Database

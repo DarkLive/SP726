@@ -1,0 +1,29 @@
+﻿div.std{
+    border: 1px solid #de3f3f;
+    margin: 10px;
+}
+div#cont{
+    width:600px;
+    margin-left:350px;
+}
+div#top{
+    height:305px;
+}
+div#banner{
+    height:100px;
+}
+div#nav{
+    height:25px;
+}
+div.card{
+    width:122px;
+    height:122px;
+    float:left;
+    margin-top:10px;
+}
+div#bottom{
+    clear:both;
+}
+div#foot{
+    height:200px;
+}

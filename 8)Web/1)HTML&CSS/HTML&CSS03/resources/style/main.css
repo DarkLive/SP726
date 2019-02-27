@@ -4,7 +4,7 @@
 }
 div#cont{
     width:600px;
-    margin-left:350px;
+    margin-left:calc(50% - 300px);
 }
 div#top{
     height:305px;

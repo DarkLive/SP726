@@ -1,0 +1,79 @@
+﻿body{
+    background-color:#bdbdbd;
+}
+.border{
+    border: 1px solid #000000;
+    border-radius:4px;
+}
+.lowermargin{
+    margin: 5px;
+}
+.active{    
+    background-color:#a13a3a !important;
+}
+div#container{
+    width:700px;
+    margin:auto;
+    background-color:#d3d3d3;
+}
+div#up{
+    overflow:auto;
+}
+div#up div{
+    float:left;
+}
+div#nav{
+    width:70%;
+}
+div#nav li{
+    list-style-type:none;
+    background-color:#404040;
+    padding:10px;
+    display:inline;
+    border: 1px solid #404040;
+    border-radius:5px;
+}
+div#nav li:hover:not(.active){
+    background-color:#727171;
+    transition:2s;
+}
+div#nav li a:link, div#nav a:visited{
+    color:#bababa;
+    text-decoration:none;
+}
+div#icons{
+    width:25%;
+    margin-left:10px;
+}
+div#icons a, div#icons a:link, div#icons a:visited{
+    margin-left:7px;
+    color:#404040;
+    text-decoration:none;
+    font-size:35pt;
+}
+div#icons span{
+    font-size:46px;
+    margin-left:7px;
+}
+div#mid{
+    padding-top:5px;
+}
+div#content{
+    height:350px;
+    margin: 0px 0px 0px 50px;
+}
+div#content img{
+    width: 47%;
+    opacity:0.5;
+    transition:2s;
+}
+div#content img:hover{
+    opacity:1;
+    outline:2px solid #ce6363;
+}   
+div#down{
+    margin-top:10px;
+}
+div#foot{
+    height:50px;
+}

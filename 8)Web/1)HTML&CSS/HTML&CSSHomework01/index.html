@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>HTML&CSSHomework01</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        input[type="button"]{
+            padding:15px 20px;
+            letter-spacing:2px;
+            background-color:#333333;
+            color:#ffffff;
+            border:none;
+            transition:1s;
+        }
+        input[type="button"]:hover{
+            background-color:#FDC716;
+            color:#ffffff;
+        }
+        input[type="text"]{
+            padding:12px 20px;
+            background-color:#ffffff;
+            color:#757575;
+            border: 1px solid #A9A9A9;
+            margin-top:10px;
+            margin-bottom:10px;
+            width:400px;
+        }
+        .blackbg{
+            background-color:#333333;
+        }
+        .icon{
+            color:#FDC716;
+            font-size:45px;
+            float:left;
+        }
+        .float{
+            float:left;
+        }
+        body{
+            margin:0px;
+            padding:0px;
+        }
+        #container{
+            color:#7D888E;
+            font-family: 'Poppins', sans-serif;
+            overflow:auto;
+        }
+        div#topest{
+            height:125px;
+        }
+        div#topest span{
+            float:left;
+            margin-top:20px;
+            margin-left:calc(50% - 900px);
+            margin-right:20px;
+        }
+        div#topest span:not(.logo){
+            margin-top:30px;
+            margin-left:calc(50% - 800px);
+        }
+        div#topest span:first-child{
+            margin-left:calc(50% - 600px );
+        }
+        div#upthere{
+            color:#ffffff;
+            height:70px;
+        }
+        div#upthere span{
+            display:inline-block;
+            margin-top:10px;
+            margin-left:20%;
+        }
+        div#upthere span ul li{
+            list-style-type:none;
+            display:inline;
+            margin-left:50px;
+        }
+        div#content{
+            height:400px;
+        }
+        div#content div{
+            width:400px;
+            height:200px;
+            float:left;
+            margin-top:50px;
+            margin-left:calc(50% - 600px);
+        }
+        div#bottomup{
+            clear:both;
+            height:460px;
+            font-size:14px;
+        }
+        div#bottomup span{
+            float:left;
+            width:275px;
+            height:260px;
+            margin-left:calc(50% - 800px);
+            margin-top:calc(50% - 850px)
+        }
+        div#bottomup i{
+            font-style:normal;
+            color:#FDC716;
+        }
+        div#bottomup b{
+            font-size:16px;
+            color:#FFFFFF;
+        }
+        div#footer{
+            height:70px;
+            text-align:center;
+        }
+        div#footer span{
+            display:inline-block;
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="top">
+            <div id="topest">
+                <span class="logo"><img src="resources/img/logo.png" width="110px" height="70px" /></span>
+                <span><i class="material-icons icon">local_phone</i>&nbsp;<a class="float">Phone Number: <br />+0123456789</a></span>
+                <span><i class="material-icons icon">mail_outline</i>&nbsp;<a class="float">Email Address: <br />industry@mail.com</a></span>
+                <span><input type="button" value="REQUEST A QUOTE" /></span>
+            </div>
+            <div id="upthere" class="blackbg"><span><ul><li>HOME</li><li>PAGES</li><li>ABOUT</li><li>SOLUTION</li><li>PROJECT</li><li>NEWS</li><li>SHOP</li><li>CONTACT</li></ul></span></div>
+        </div>
+        <div id="mid">
+            <div id="pageimg"><img alt="img" src="resources/img/banner.png" width="100%" /></div>
+            <div id="content">
+                <div id="login">
+                        <b>LOG IN NOW</b><br />
+                        <input type="text" name="fullname" placeholder="Your Name" /><br />
+                        <input type="text" name="email" placeholder="Enter Email ID" /><br />
+                        <input type="text" name="pass" placeholder="Password" /><br />
+                        <input type="button" value="LOGIN NOW" />
+                </div>
+                <div id="register">
+                        <b>REGISTER HERE</b><br />
+                        <input type="text" name="fullname" placeholder="Your Name" /><br />
+                        <input type="text" name="email" placeholder="Enter Email ID" /><br />
+                        <input type="text" name="pass" placeholder="Password" /><br />
+                        <input type="button" value="REGISTER NOW" />
+                </div>
+            </div>
+        </div>
+        <div id="bottom">
+            <div id="bottomup" class="blackbg">
+                <span><b>ABOUT INDUSTRY</b><br /><br />
+                For more than 38 years, We offer the most complete industrial solutions worldwide. Our solutions are used over 150 contries supporting millions of customers in domain of electricity, construction, metal pro files, gasoline, etc...</span> 
+
+                <span><b>USEFULL LINKS</b><br /><br />
+                    AGRICULTURE PROCESS<br /><br />
+                    MECHANICAL PROCESS<br /><br />
+                    MATERIAL PROCESS<br /><br />
+                    POWER AGENCY
+                </span>
+                <span><b>QUICK CONTACT</b><br /><br />If you want to contact us about any issue please dont. We don't even have any support team so figure it out yourself.<br />
+                <br /><i>Email: industry@email.com</i><br />
+                <br /><i>Phone: +0123456789</i></span>
+                <span><b>LATEST NEWS</b><br /><br /><a>This Month in Factory - March</a><br /><br /><a>This Month in Factory - February</a></span>
+            </div>
+            <div id="footer"><span>Industrial template | Ege E. Turan | No Rights Reserved</span></div>
+        </div>
+    </div>
+</body>
+</html>

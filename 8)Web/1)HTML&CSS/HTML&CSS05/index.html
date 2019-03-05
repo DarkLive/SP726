@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+        }
+
+        header {
+            height: 50px;
+            background-color: #504D54;
+            overflow: auto;
+        }
+
+            header #banner {
+                text-align: center;
+                width: 110px;
+                margin-left: 25%;
+                margin-right:5%;
+            }
+
+            header section {
+                float: left;
+            }
+
+        nav #cart span {
+            padding: 3px 5px 3px 5px;
+            border: 1px solid transparent;
+            border-radius: 50px;
+            background-color: #FDFBFE;
+            color: #504D54;
+        }
+
+        nav ul li {
+            float: left;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            margin-right: 3%;
+        }
+
+            nav ul li a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+        #uppersec {
+            clear: both;
+            height: 420px;
+            background-color: #403D44;
+        }
+
+        #up section {
+            float: left;
+        }
+
+        #slide {
+            width: 45%;
+        }
+
+            #slide img {
+                width: 50%;
+                margin-left: 20%;
+                margin-top: 9%;
+                float: right;
+            }
+
+        #info {
+            width: 45%;
+            margin-left: 10px;
+        }
+
+            #info #infocontainer {
+                width: 45%;
+                text-align: center;
+            }
+
+            #info h3 {
+                margin-top: 20%;
+            }
+
+            #info button {
+                border: 1px solid transparent;
+                border-radius: 5px;
+                padding: 10px 30px 10px 30px;
+                background-color: #db2020;
+                color: #ffffff;
+            }
+
+            #info .time {
+                width: 2rem;
+                height: 2.5rem;
+                padding: 5px;
+                display: inline-block;
+                border: 1px solid #ffffff;
+                border-radius: 5px;
+                float: left;
+                margin-right: 5px;
+            }
+
+                #info .time:first-of-type {
+                    margin-left: 23%;
+                }
+
+                #info .time b {
+                    font-size: 12px;
+                    font-weight: normal;
+                }
+
+        #down {
+            margin-left: 20%;
+        }
+
+            #down .card {
+                margin-top: 5%;
+                padding: 10px 30px 10px 30px;
+                float: left;
+                text-align: center;
+                width: 120px;
+                height: 50px;
+            }
+
+                #down .card span {
+                    font-weight: bold;
+                }
+
+                    #down .card span b {
+                        color: #C2BFC6;
+                        font-size: 12px;
+                        font-weight: normal;
+                    }
+
+        #midsec {
+            color: #403D44;
+            background-color: #FBF9FC;
+            overflow: auto;
+        }
+
+            #midsec aside:first-child {
+                width: 17%;
+                margin-left: 5%;
+                border: 1px solid #868387;
+            }
+
+            #midsec aside {
+                width: 76%;
+                float: left;
+                background-color: #FFFFFF;
+            }
+
+                #midsec aside span {
+                    display: block;
+                    width: 240px;
+                    height: 250px;
+                    float: left;
+                    text-align: center;
+                    margin: 40px 10px 0px 70px;
+                    border: 1px solid #504D54;
+                }
+
+                    #midsec aside span .newp {
+                        color: #E36566;
+                    }
+
+                    #midsec aside span img {
+                        width: 240px;
+                    }
+
+        footer {
+            color: #828282;
+        }
+
+            footer section {
+                float: left;
+                margin-left:20%;
+                margin-bottom:20px;
+            }
+
+            footer h5 {
+                margin: 10px;
+                color: #3D3B3E;
+            }
+
+            footer #fmid span {
+                display: block;
+            }
+
+            footer #fleft span, footer #fright span {
+                display: block;
+                margin-top: 5px;
+            }
+    </style>
+</head>
+<body>
+    <main style="overflow: auto">
+        <header>
+            <nav>
+                <section id="banner">Fashion</section>
+
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <section id="cart">Cart&nbsp;&nbsp;<span>1</span></section>
+            </nav>
+        </header>
+        <section id="uppersec">
+            <section id="up">
+                <section id="slide">
+                    <img src="resources/img/temp.jpg" />
+                </section>
+                <section id="info">
+                    <div id="infocontainer">
+                        <h3>Lorem Ipsum</h3>
+                        <br />
+                        <button>Buy Now -87%</button><br />
+                        <br />
+                        <span id="tleft">Remaining Time</span><br />
+                        <br />
+                        <span>
+                            <span class="time">2<br />
+                                <b>hour</b></span>
+                            <span class="time">2<br />
+                                <b>min</b></span>
+                            <span class="time">2<br />
+                                <b>sec</b></span>
+                        </span>
+                    </div>
+                </section>
+            </section>
+            <section id="down" style="clear: both">
+                <section class="card">
+                    <span>7/24<br />
+                        <b>Open</b></span>
+                </section>
+                <section class="card">
+                    <span>20000+<br />
+                        <b>Items</b></span>
+                </section>
+                <section class="card">
+                    <span>Certified<br />
+                        <b>by High Web Order (<em>very</em> hard to get)</b></span>
+                </section>
+                <section class="card">
+                    <span>Now With Gifts<br />
+                        <b>Send gifts to your loved ones or just yourself</b></span>
+                </section>
+            </section>
+        </section>
+        <section id="midsec">
+            <aside>
+                <input type="search" placeholder="Search: " style="padding: 5px; margin: 10px" />
+                <hr />
+                <ul style="list-style: none">
+                    <li>Hand bag</li>
+                    <li>Hobo bag</li>
+                    <li>Tote bag</li>
+                    <li>Duffle Bag</li>
+                    <li>Messenger Bag</li>
+                    <li>Backpack</li>
+                    <li>Satchel</li>
+                    <li>Doctor’s Bag</li>
+                    <li>Laptop Bag</li>
+                    <li>Bucket Bag</li>
+                    <li>Bowler Bag</li>
+                    <li>Wristlet</li>
+                    <li>Pouch</li>
+                    <li>Clutch</li>
+                    <li>Beach Bag</li>
+                    <li>Shoulder Bag</li>
+                    <li>Miniaudiere</li>
+                    <li>Shopping/Grocery Bag</li>
+                    <li>Drawstring Bag</li>
+                    <li>Make up Bags</li>
+                    <li>Foldover Bags</li>
+                    <li>Phone Bag</li>
+                    <li>Camera case Bags</li>
+                    <li>Baguette Bags</li>
+                    <li>Barrel Bag</li>
+                    <li>Basket Bag</li>
+                    <li>Fanny Pack</li>
+                    <li>Kelly Bag</li>
+                    <li>Lunch Bags</li>
+                </ul>
+            </aside>
+            <aside>
+                <span>
+                    <img src="resources/img/temp.jpg" /><br />
+                    <b>Brand</b><br />
+                    <i>1,700₺</i><i class="newp">1200₺</i>
+                </span>
+                <span>
+                    <img src="resources/img/temp.jpg" /><br />
+                    <b>Brand</b><br />
+                    <i>1,700₺</i><i class="newp">1200₺</i>
+                </span>
+                <span>
+                    <img src="resources/img/temp.jpg" /><br />
+                    <b>Brand</b><br />
+                    <i>1,700₺</i><i class="newp">1200₺</i>
+                </span>
+                <span>
+                    <img src="resources/img/temp.jpg" /><br />
+                    <b>Brand</b><br />
+                    <i>1,700₺</i><i class="newp">1200₺</i>
+                </span>
+                <span>
+                    <img src="resources/img/temp.jpg" /><br />
+                    <b>Brand</b><br />
+                    <i>1,700₺</i><i class="newp">1200₺</i>
+                </span>
+                <span>
+                    <img src="resources/img/temp.jpg" /><br />
+                    <b>Brand</b><br />
+                    <i>1,700₺</i><i class="newp">1200₺</i>
+                </span>
+            </aside>
+        </section>
+        <footer>
+            <hr />
+            <section id="fleft">
+                <h5>FAQ</h5>
+                <span>Why Us</span>
+                <span>Why You</span>
+                <span>Why We</span>
+                <span>Why Me</span>
+            </section>
+            <section id="fmid">
+                <h5>Social Media</h5>
+                <span><i class="fab fa-blogger fa-2x"></i>&nbsp;&nbsp;<i class="fab fa-facebook fa-2x"></i>&nbsp;&nbsp;<i class="fab fa-twitter fa-2x"></i>&nbsp;&nbsp;<i class="fab fa-instagram fa-2x"></i></span>
+                <h5>Payment Methods</h5>
+                <span><i class="fab fa-cc-mastercard fa-2x"></i>&nbsp;&nbsp;<i class="fab fa-cc-visa fa-2x"></i>&nbsp;&nbsp;<i class="fab fa-cc-paypal fa-2x"></i></span>
+            </section>
+            <section id="fright">
+                <h5>Phone</h5>
+                <span>+1 (123) 456 78 90</span>
+                <span>+1 (123) 456 78 90</span>
+                <span>+1 (123) 456 78 90</span>
+                <span>+1 (123) 456 78 90</span>
+            </section>
+        </footer>
+    </main>
+</body>
+</html>

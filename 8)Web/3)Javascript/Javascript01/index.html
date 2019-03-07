@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        main {
+            text-align: center;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 5px;
+        }
+
+            main section {
+                padding: 10px;
+                background-color: #808080;
+                border: 1px solid transparent;
+                border-radius:15px;
+            }
+             main section:last-child {
+                grid-column-start: 3 span;
+            }
+
+        .Light {
+            color: #383838;
+            background-color: #f5f5f5;
+        }
+
+        .Dark {
+            color: #f5f5f5;
+            background-color: #383838;
+        }
+    </style>
+    <script>
+        alert("Hello Visitor");
+
+        function Calc(temp) {
+            var x = 5, y = 2;
+            if (temp == "+") alert(x + y);
+            else if (temp == "-") alert(x - y);
+            else if (temp == "*") alert(x * y);
+            else if (temp == "/") alert(x / y);
+            else alert("Unavaible Operation")
+        }
+
+        function alertthis() {
+            alert(document.getElementById('sentence').innerText);
+        }
+
+        function stylethem() {
+            var temp = document.getElementsByClassName('sec');
+
+            for (var i = 0; i < temp.length; i++) {
+                temp[i].style.border = "5px solid green";
+            }
+        }
+
+        function changetheme() {
+            if (document.getElementById('articletext').classList[0] == 'Light') document.getElementById('articletext').classList.replace('Light', 'Dark');
+            else if (document.getElementById('articletext').classList[0] == 'Dark') document.getElementById('articletext').classList.replace('Dark', 'Light');
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <section class="sec">
+            <button onclick="Calc('+')">+</button>
+            <button onclick="Calc('-')">-</button>
+            <button onclick="Calc('*')">*</button>
+            <button onclick="Calc('/')">/</button>
+        </section>
+        <section class="sec">
+            <p id="sentence" style="float: left; margin: 0; margin-top: 2px; margin-left: 30%; margin-right: 2px;">Hold the DOOR!</p>
+            <button onmouseover="alertthis()" style="float: left">Use ID</button>
+        </section>
+        <section class="sec">
+            <button onclick="stylethem()">Stylize This!</button>
+        </section>
+        <section>
+            <article>
+                <p id="articletext" class="Light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </article>
+            <button onclick="changetheme()">Change Theme</button>
+        </section>
+    </main>
+</body>
+</html>

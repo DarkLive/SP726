@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        main {
+            text-align: center;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 5px;
+        }
+
+            main section {
+                padding: 10px;
+                background-color: #b4b3b3;
+                border: 1px solid transparent;
+                border-radius: 15px;
+            }
+    </style>
+    <script>
+        function q1click() {
+            var temp = Number(document.getElementById('q1num').value);
+            var tempout = "";
+
+
+            for (var i = 0; i <= temp; i++) {
+                if (i < 3) continue;
+
+                if (i % 3 == 0) tempout += i + " ";
+            }
+
+            document.getElementById('q1p').innerHTML = tempout;
+        }
+
+        function q2click() {
+            document.getElementById('q2').style.backgroundColor = document.getElementById('q2color').value;
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <section>
+            <input type="number" id="q1num" />
+            <br />
+            <p id="q1p"></p>
+            <button onclick="q1click()">Click!</button>
+        </section>
+        <section id="q2">
+            <input type="color" id="q2color" onchange="q2click()" />
+        </section>
+    </main>
+</body>
+</html>

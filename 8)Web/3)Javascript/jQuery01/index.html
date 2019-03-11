@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#q1 button").click(function () {
+                alert($("#q1 input").val() + " " + $("#q1 section").text());
+                alert($("#q1 input").attr("title"));
+            });
+
+            $("#q2p2 article").before("<h3>Article</h3>");
+
+            $("#q2p1 button").click(function () {
+                $("#q2p2").css({ "font-size": $("#q2p1 input[type='number']").val() + "px", "background-color": $("#q2p1 input[type='color']").val() });
+            });
+        });
+    </script>
+    <style>
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 10px;
+            border: 1px solid #808080;
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+            main > section {
+                text-align: center;
+                padding: 15px;
+                border: 1px solid #ff6a00;
+                border-radius: 15px;
+            }
+
+        button {
+            padding: 7px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="q1">
+            <input type="text" title="ATTR Test" />
+            <section>SectionText</section>
+            <button>Click</button>
+        </section>
+        <section id="q2p1" style="grid-column-start: 1; grid-column-end: 3;">
+            <section>
+                <input type="color" />
+                <input type="number" />
+                <button>Click</button>
+            </section>
+        </section>
+        <section id="q2p2" style="grid-column-start: 2 span;">
+            <article>
+                test
+            </article>
+        </section>
+    </main>
+</body>
+</html>

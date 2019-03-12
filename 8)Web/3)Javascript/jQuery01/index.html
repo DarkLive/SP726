@@ -17,9 +17,31 @@
             $("#q2p1 button").click(function () {
                 $("#q2p2").css({ "font-size": $("#q2p1 input[type='number']").val() + "px", "background-color": $("#q2p1 input[type='color']").val() });
             });
+
+            $("#q3 input, #q3 button").on({
+                focus: function () {
+                    $(this).addClass("selected")
+                    $(this).removeClass("nonselected")
+                },
+                blur: function () {
+                    $(this).removeClass("selected")
+                    $(this).addClass("nonselected")
+                }
+            });
         });
     </script>
     <style>
+        .selected {
+            background-color: #ffd800;
+            font-size: 20px;
+        }
+
+        .nonselected {
+            background-color: unset;
+            font-size: unset;
+            border: 1px solid;
+        }
+
         main {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -39,11 +61,15 @@
         button {
             padding: 7px;
         }
+
+        input {
+            margin: 2px;
+        }
     </style>
 </head>
 <body>
     <main>
-        <section id="q1">
+        <section id="q1" style="grid-column-start: 4 span;">
             <input type="text" title="ATTR Test" />
             <section>SectionText</section>
             <button>Click</button>
@@ -59,6 +85,13 @@
             <article>
                 test
             </article>
+        </section>
+        <section id="q3" style="grid-column-start: 4 span;">
+            <input type="text" class="nonselected" /><br />
+            <input type="text" class="nonselected" /><br />
+            <input type="text" class="nonselected" /><br />
+            <br />
+            <button>Click</button>
         </section>
     </main>
 </body>

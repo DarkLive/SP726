@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="_1_Blog.Site" %>
+
+<%@ Register Src="~/nav_UserControl.ascx" TagPrefix="uc1" TagName="nav_UserControl" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Temp</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css" />
+    <script src="scripts/jquery-3.3.1.slim.min.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="src" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <main class="container mt-2">
+        <!-- UP -->
+        <section class="mb-2">
+            <header class="col-lg-12" style="height: 180px;">
+                <asp:ContentPlaceHolder ID="header" runat="server"></asp:ContentPlaceHolder>
+            </header>
+            <uc1:nav_UserControl runat="server" ID="nav_UserControl" />
+        </section>
+        <!-- Mid -->
+        <section class="clearfix mb-2">
+            <asp:ContentPlaceHolder ID="Mid" runat="server"></asp:ContentPlaceHolder>
+        </section>
+        <!-- Bottom -->
+        <footer class="col-lg-12 bg-dark text-light">
+            Footer
+        </footer>
+    </main>
+</body>
+</html>

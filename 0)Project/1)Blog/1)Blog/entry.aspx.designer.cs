@@ -22,15 +22,6 @@ namespace _1_Blog {
         protected global::System.Web.UI.WebControls.DataList EntryList;
         
         /// <summary>
-        /// addArticle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm addArticle;
-        
-        /// <summary>
         /// in_author control.
         /// </summary>
         /// <remarks>

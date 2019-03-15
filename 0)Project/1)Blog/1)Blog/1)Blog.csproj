@@ -154,6 +154,9 @@
     <Compile Include="Article.cs">
       <DependentUpon>DataCord.tt</DependentUpon>
     </Compile>
+    <Compile Include="Author.cs">
+      <DependentUpon>DataCord.tt</DependentUpon>
+    </Compile>
     <Compile Include="blog.aspx.cs">
       <DependentUpon>blog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,6 +193,9 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListEntriesWithAuthorName.cs">
+      <DependentUpon>DataCord.tt</DependentUpon>
+    </Compile>
     <Compile Include="nav_UserControl.ascx.cs">
       <DependentUpon>nav_UserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="imgs\article\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

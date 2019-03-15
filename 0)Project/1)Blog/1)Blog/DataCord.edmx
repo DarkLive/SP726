@@ -4,22 +4,74 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="artID" />
           </Key>
           <Property Name="artID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="artAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="artAuthor" Type="int" Nullable="false" />
+          <Property Name="artDate" Type="date" Nullable="false" />
+          <Property Name="artTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="artText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="artImg" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="autID" />
+          </Key>
+          <Property Name="autID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="autName" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Blog.dbo.ListEntriesWithAuthorName' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ListEntriesWithAuthorName">
+          <Key>
+            <PropertyRef Name="artID" />
+            <PropertyRef Name="artAuthor" />
+            <PropertyRef Name="autName" />
+            <PropertyRef Name="artDate" />
+            <PropertyRef Name="artTitle" />
+            <PropertyRef Name="artText" />
+          </Key>
+          <Property Name="artID" Type="int" Nullable="false" />
+          <Property Name="artAuthor" Type="int" Nullable="false" />
+          <Property Name="autName" Type="nvarchar" MaxLength="70" Nullable="false" />
           <Property Name="artDate" Type="date" Nullable="false" />
           <Property Name="artTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="artText" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Article_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="autID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="artAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BlogModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListEntriesWithAuthorName" EntityType="Self.ListEntriesWithAuthorName" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ListEntriesWithAuthorName].[artID] AS [artID], 
+    [ListEntriesWithAuthorName].[artAuthor] AS [artAuthor], 
+    [ListEntriesWithAuthorName].[autName] AS [autName], 
+    [ListEntriesWithAuthorName].[artDate] AS [artDate], 
+    [ListEntriesWithAuthorName].[artTitle] AS [artTitle], 
+    [ListEntriesWithAuthorName].[artText] AS [artText]
+    FROM [dbo].[ListEntriesWithAuthorName] AS [ListEntriesWithAuthorName]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Article_Author" Association="Self.FK_Article_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -28,14 +80,58 @@
             <PropertyRef Name="artID" />
           </Key>
           <Property Name="artID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="artAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="artAuthor" Type="Int32" Nullable="false" />
           <Property Name="artDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="artTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="artText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="BlogModel.FK_Article_Author" FromRole="Article" ToRole="Author" />
+          <Property Name="artImg" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="BlogEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Authors" EntityType="BlogModel.Author" />
+          <AssociationSet Name="FK_Article_Author" Association="BlogModel.FK_Article_Author">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <EntitySet Name="ListEntriesWithAuthorNames" EntityType="BlogModel.ListEntriesWithAuthorName" />
         </EntityContainer>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="autID" />
+          </Key>
+          <Property Name="autID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="autName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Articles" Relationship="BlogModel.FK_Article_Author" FromRole="Author" ToRole="Article" />
+        </EntityType>
+        <Association Name="FK_Article_Author">
+          <End Type="BlogModel.Author" Role="Author" Multiplicity="1" />
+          <End Type="BlogModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="autID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="artAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ListEntriesWithAuthorName">
+          <Key>
+            <PropertyRef Name="artID" />
+            <PropertyRef Name="artAuthor" />
+            <PropertyRef Name="autName" />
+            <PropertyRef Name="artDate" />
+            <PropertyRef Name="artTitle" />
+            <PropertyRef Name="artText" />
+          </Key>
+          <Property Name="artID" Type="Int32" Nullable="false" />
+          <Property Name="artAuthor" Type="Int32" Nullable="false" />
+          <Property Name="autName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="artDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="artTitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="artText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -45,11 +141,32 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="BlogModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="artImg" ColumnName="artImg" />
                 <ScalarProperty Name="artID" ColumnName="artID" />
                 <ScalarProperty Name="artAuthor" ColumnName="artAuthor" />
                 <ScalarProperty Name="artDate" ColumnName="artDate" />
                 <ScalarProperty Name="artTitle" ColumnName="artTitle" />
                 <ScalarProperty Name="artText" ColumnName="artText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="BlogModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="autName" ColumnName="autName" />
+                <ScalarProperty Name="autID" ColumnName="autID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListEntriesWithAuthorNames">
+            <EntityTypeMapping TypeName="BlogModel.ListEntriesWithAuthorName">
+              <MappingFragment StoreEntitySet="ListEntriesWithAuthorName">
+                <ScalarProperty Name="artText" ColumnName="artText" />
+                <ScalarProperty Name="artTitle" ColumnName="artTitle" />
+                <ScalarProperty Name="artDate" ColumnName="artDate" />
+                <ScalarProperty Name="autName" ColumnName="autName" />
+                <ScalarProperty Name="artAuthor" ColumnName="artAuthor" />
+                <ScalarProperty Name="artID" ColumnName="artID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

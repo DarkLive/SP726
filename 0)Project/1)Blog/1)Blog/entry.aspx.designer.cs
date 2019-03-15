@@ -13,13 +13,22 @@ namespace _1_Blog {
     public partial class entry {
         
         /// <summary>
-        /// EntryList control.
+        /// AuthorList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList EntryList;
+        protected global::System.Web.UI.WebControls.DataList AuthorList;
+        
+        /// <summary>
+        /// ArticleList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList ArticleList;
         
         /// <summary>
         /// in_author control.
@@ -28,7 +37,7 @@ namespace _1_Blog {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_author;
+        protected global::System.Web.UI.WebControls.DropDownList in_author;
         
         /// <summary>
         /// in_title control.
@@ -47,5 +56,23 @@ namespace _1_Blog {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox in_text;
+        
+        /// <summary>
+        /// in_articlepic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload in_articlepic;
+        
+        /// <summary>
+        /// in_authname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox in_authname;
     }
 }

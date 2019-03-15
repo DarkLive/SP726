@@ -12,15 +12,13 @@ namespace _1_Blog
     using System;
     using System.Collections.Generic;
     
-    public partial class Article
+    public partial class ListEntriesWithAuthorName
     {
         public int artID { get; set; }
         public int artAuthor { get; set; }
+        public string autName { get; set; }
         public System.DateTime artDate { get; set; }
         public string artTitle { get; set; }
         public string artText { get; set; }
-        public string artImg { get; set; }
-    
-        public virtual Author Author { get; set; }
     }
 }

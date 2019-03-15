@@ -26,5 +26,7 @@ namespace _1_Blog
         }
     
         public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<ListEntriesWithAuthorName> ListEntriesWithAuthorNames { get; set; }
     }
 }

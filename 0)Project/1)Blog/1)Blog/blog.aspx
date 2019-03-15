@@ -31,15 +31,15 @@
     <!-- MidRight -->
     <section class="col-lg-10 float-left p-2 border">
         <section class="card float-left" style="width: 10rem">
-            <img src="imgs/card1.jpg" class="card-img-top" />
-            <section class="card-body">
-                <h5 class="card-title">Title</h5>
-                <p class="card-text">Writer</p>
-                <p class="card-text">Date</p>
+            <asp:Image ID="con_Image" class="card-img-top" runat="server" />
+            <section class="card-body" runat="server">
+                <h5 id="con_Author"  class="card-title" runat="server"></h5>
+                <p  id="con_Title" class="card-text" runat="server"></p>
+                <p id="con_Date" class="card-text" runat="server"></p>
             </section>
         </section>
         <article class="ml-1 float-left" style="width: calc(98% - 10rem)">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam faucibus justo vitae nisi elementum, quis blandit magna consequat. Sed est massa, vehicula sed urna id, malesuada consequat arcu.</p>
+            <p id="con_Text" runat="server"></p>
         </article>
     </section>
 </asp:Content>

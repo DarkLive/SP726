@@ -30,6 +30,10 @@
     </section>
     <!-- MidRight -->
     <section class="col-lg-10 float-left p-2 border">
+        <asp:Repeater ID="Repeater" runat="server">
+
+             
+        </asp:Repeater>
         <section class="card float-left" style="width: 10rem">
             <asp:Image ID="con_Image" class="card-img-top" runat="server" />
             <section class="card-body" runat="server">

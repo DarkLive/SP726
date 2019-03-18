@@ -10,60 +10,78 @@
 namespace _1_Blog {
     
     
-    public partial class entry {
+    public partial class account {
         
         /// <summary>
-        /// AuthorList control.
+        /// alertthis control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList AuthorList;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertthis;
         
         /// <summary>
-        /// ArticleList control.
+        /// in_Log_Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList ArticleList;
+        protected global::System.Web.UI.WebControls.TextBox in_Log_Email;
         
         /// <summary>
-        /// in_author control.
+        /// in_Log_Password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList in_author;
+        protected global::System.Web.UI.WebControls.TextBox in_Log_Password;
         
         /// <summary>
-        /// in_title control.
+        /// in_Reg_FullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_title;
+        protected global::System.Web.UI.WebControls.TextBox in_Reg_FullName;
         
         /// <summary>
-        /// in_text control.
+        /// in_Reg_Birthday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_text;
+        protected global::System.Web.UI.WebControls.TextBox in_Reg_Birthday;
         
         /// <summary>
-        /// in_articlepic control.
+        /// in_Reg_Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload in_articlepic;
+        protected global::System.Web.UI.WebControls.TextBox in_Reg_Email;
+        
+        /// <summary>
+        /// in_Reg_Password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox in_Reg_Password;
+        
+        /// <summary>
+        /// in_Reg_Avatar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload in_Reg_Avatar;
     }
 }

@@ -83,7 +83,7 @@
                     <EditItemTemplate>
                         <asp:TextBox CssClass="form-control" ReadOnly="true" Text='<%# Eval("artID") %>' runat="server"></asp:TextBox>
                         <td>
-                            <asp:DropDownList ID="in_Up_Author" CssClass="form-control" Style="min-width: 100px" runat="server" OnLoad="AuthorDropdown_Load"></asp:DropDownList></td>
+                            <asp:DropDownList ID="in_Up_Author" CssClass="form-control" Style="min-width: 100px" OnLoad="in_Up_Author_Load" runat="server"></asp:DropDownList></td>
                         <td>
                             <asp:TextBox CssClass="form-control" ReadOnly="true" Text="Now" runat="server"></asp:TextBox></td>
                         <td>
@@ -112,12 +112,6 @@
                 Image:<br />
                 <asp:FileUpload ID="in_articlepic" CssClass="form-control" runat="server" />
                 <asp:Button Text="Add" OnClick="articleadd" runat="server" />
-            </section>
-            <section class="col-lg-2 ml-3 float-left">
-                <h5>Add User</h5>
-                AuthorName:<br />
-                <asp:TextBox ID="in_authname" runat="server"></asp:TextBox><br />
-                <asp:Button Text="Add" OnClick="authoradd" runat="server" />
             </section>
         </form>
     </section>

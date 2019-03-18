@@ -12,26 +12,29 @@ namespace _1_Blog
     using System;
     using System.Collections.Generic;
     
-    public partial class Article
+    public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Article()
+        public Account()
         {
-            this.artActive = true;
-            this.Rel_Article_Category = new HashSet<Rel_Article_Category>();
+            this.usrImg = "imgs/defaultuser.png";
+            this.usrActive = true;
+            this.usrRole = 1;
+            this.Articles = new HashSet<Article>();
         }
     
-        public int artID { get; set; }
-        public string artTitle { get; set; }
-        public string artText { get; set; }
-        public System.DateTime artPublishDate { get; set; }
-        public System.DateTime artUpdateDate { get; set; }
-        public string artImage { get; set; }
-        public int artWriter { get; set; }
-        public bool artActive { get; set; }
+        public int usrID { get; set; }
+        public string usrFullName { get; set; }
+        public string usrEmail { get; set; }
+        public string usrPassword { get; set; }
+        public System.DateTime usrBirthDay { get; set; }
+        public System.DateTime usrRegistered { get; set; }
+        public Nullable<System.DateTime> usrRemoved { get; set; }
+        public string usrImg { get; set; }
+        public bool usrActive { get; set; }
+        public byte usrRole { get; set; }
     
-        public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rel_Article_Category> Rel_Article_Category { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

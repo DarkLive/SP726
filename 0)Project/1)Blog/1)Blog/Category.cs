@@ -12,18 +12,18 @@ namespace _1_Blog
     using System;
     using System.Collections.Generic;
     
-    public partial class Author
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Author()
+        public Category()
         {
-            this.Articles = new HashSet<Article>();
+            this.Rel_Article_Category = new HashSet<Rel_Article_Category>();
         }
     
-        public int autID { get; set; }
-        public string autName { get; set; }
+        public int catID { get; set; }
+        public string catName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Rel_Article_Category> Rel_Article_Category { get; set; }
     }
 }

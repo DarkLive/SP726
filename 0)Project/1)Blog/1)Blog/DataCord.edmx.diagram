@@ -4,11 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0568be79fff45f49c538771505e96e3" Name="Diagram1">
-        <EntityTypeShape EntityType="BlogModel.Article" Width="1.5" PointX="1.125" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogModel.Author" Width="1.5" PointX="1.125" PointY="4.125" />
-        <AssociationConnector Association="BlogModel.FK_Article_Author" />
-        <EntityTypeShape EntityType="BlogModel.ListEntriesWithAuthorName" Width="1.5" PointX="3.375" PointY="0.75" />
+      <Diagram DiagramId="d0568be79fff45f49c538771505e96e3" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="BlogModel.Account" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="BlogModel.Article" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="BlogModel.Category" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="BlogModel.Rel_Article_Category" Width="1.5" PointX="5.25" PointY="1.5" />
+        <AssociationConnector Association="BlogModel.FK_Article_Account" />
+        <AssociationConnector Association="BlogModel.FK_Rel_Article_Category_Article" />
+        <AssociationConnector Association="BlogModel.FK_Rel_Article_Category_Category" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

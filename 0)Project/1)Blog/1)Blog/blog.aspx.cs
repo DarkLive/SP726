@@ -11,14 +11,15 @@ namespace _1_Blog {
          BlogEntities Entries = new BlogEntities();
 
          var temp = Entries.Articles.SqlQuery("SELECT * FROM Article INNER JOIN Author ON Article.artAuthor = Author.autID").Last();
-      
-         {
-            con_Image.ImageUrl = temp.artImg;
-            con_Author.InnerText = temp.Author.autName;
-            con_Title.InnerText = temp.artTitle;
-            con_Date.InnerText = temp.artDate.ToString("dd/MM/yyyy");
-            con_Text.InnerText = temp.artText;
-         }
+
+         
+         //{
+         //   con_Image.ImageUrl = temp.artImg;
+         //   con_Author.InnerText = temp.Author.autName;
+         //   con_Title.InnerText = temp.artTitle;
+         //   con_Date.InnerText = temp.artDate.ToString("dd/MM/yyyy");
+         //   con_Text.InnerText = temp.artText;
+         //}
       }
    }
 }

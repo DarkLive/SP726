@@ -25,8 +25,9 @@ namespace _1_Blog
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
-        public virtual DbSet<Author> Authors { get; set; }
-        public virtual DbSet<ListEntriesWithAuthorName> ListEntriesWithAuthorNames { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Rel_Article_Category> Rel_Article_Category { get; set; }
     }
 }

@@ -115,8 +115,7 @@
       <DependentUpon>DataCord.edmx</DependentUpon>
       <LastGenOutput>DataCord.cs</LastGenOutput>
     </Content>
-    <Content Include="entry.aspx" />
-    <Content Include="index.aspx" />
+    <Content Include="admin.aspx" />
     <Content Include="nav_UserControl.ascx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -139,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="about_us.aspx" />
-    <Content Include="blog.aspx" />
+    <Content Include="index.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Web.config" />
@@ -165,12 +164,12 @@
     <Compile Include="Article.cs">
       <DependentUpon>DataCord.tt</DependentUpon>
     </Compile>
-    <Compile Include="blog.aspx.cs">
-      <DependentUpon>blog.aspx</DependentUpon>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="blog.aspx.designer.cs">
-      <DependentUpon>blog.aspx</DependentUpon>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>DataCord.tt</DependentUpon>
@@ -190,18 +189,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataCord.edmx</DependentUpon>
     </Compile>
-    <Compile Include="entry.aspx.cs">
-      <DependentUpon>entry.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="entry.aspx.designer.cs">
-      <DependentUpon>entry.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="admin.aspx.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="admin.aspx.designer.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="nav_UserControl.ascx.cs">
       <DependentUpon>nav_UserControl.ascx</DependentUpon>

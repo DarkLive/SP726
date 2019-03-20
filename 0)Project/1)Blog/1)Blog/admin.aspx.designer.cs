@@ -13,15 +13,6 @@ namespace _1_Blog {
     public partial class entry {
         
         /// <summary>
-        /// AuthorList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList AuthorList;
-        
-        /// <summary>
         /// ArticleList control.
         /// </summary>
         /// <remarks>
@@ -31,39 +22,39 @@ namespace _1_Blog {
         protected global::System.Web.UI.WebControls.DataList ArticleList;
         
         /// <summary>
-        /// in_author control.
+        /// in_add_title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList in_author;
+        protected global::System.Web.UI.WebControls.TextBox in_add_title;
         
         /// <summary>
-        /// in_title control.
+        /// in_add_text control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_title;
+        protected global::System.Web.UI.WebControls.TextBox in_add_text;
         
         /// <summary>
-        /// in_text control.
+        /// in_add_articlepic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_text;
+        protected global::System.Web.UI.WebControls.FileUpload in_add_articlepic;
         
         /// <summary>
-        /// in_articlepic control.
+        /// in_add_catname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload in_articlepic;
+        protected global::System.Web.UI.WebControls.TextBox in_add_catname;
     }
 }

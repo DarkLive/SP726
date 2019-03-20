@@ -31,13 +31,13 @@ namespace _1_Blog {
         protected global::System.Web.UI.WebControls.HyperLink nav_About;
         
         /// <summary>
-        /// nav_Blog control.
+        /// nav_Admin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink nav_Blog;
+        protected global::System.Web.UI.WebControls.HyperLink nav_Admin;
         
         /// <summary>
         /// nav_Acc control.
@@ -47,14 +47,5 @@ namespace _1_Blog {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink nav_Acc;
-        
-        /// <summary>
-        /// nav_Admin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink nav_Admin;
     }
 }

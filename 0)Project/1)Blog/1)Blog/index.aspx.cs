@@ -11,7 +11,8 @@ namespace _1_Blog {
 
          PostRepeater.DataSource = Cord.Articles
             .OrderByDescending(temp => temp.artID)
-            .ToList();
+            .ToList()
+            .Where(temp => temp.artActive == true);
          PostRepeater.DataBind();
 
          CategoriesList.DataSource = Cord.Categories
@@ -19,7 +20,9 @@ namespace _1_Blog {
          CategoriesList.DataBind();
 
          Last5Post.DataSource = Cord.Articles
-            .OrderByDescending(temp => temp.artID).ToList().Take(5);
+            .OrderByDescending(temp => temp.artID)
+            .ToList()
+            .Where(temp => temp.artActive == true).Take(5);
          Last5Post.DataBind();
       }
    }

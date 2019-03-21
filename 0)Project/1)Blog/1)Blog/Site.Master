@@ -20,6 +20,7 @@
         <!-- UP -->
         <section class="mb-2">
             <header class="col-lg-12" style="height: 180px;">
+                    <img src="imgs/banner.jpg" class="col-12 img-fluid" style="height: 100%" />
                 <asp:ContentPlaceHolder ID="header" runat="server"></asp:ContentPlaceHolder>
             </header>
             <uc1:nav_UserControl runat="server" ID="nav_UserControl" />

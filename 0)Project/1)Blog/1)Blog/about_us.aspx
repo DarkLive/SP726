@@ -8,7 +8,6 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
-    <img src="imgs/banner.jpg" class="img-fluid" style="height: 100%" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Mid" runat="server">
     <section class="col-lg-1 float-left">&nbsp;</section>

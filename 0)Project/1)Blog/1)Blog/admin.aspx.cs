@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,7 +8,7 @@ namespace _1_Blog {
       protected void Page_Load(object sender, EventArgs e) {
          if ( IsPostBack ) return;
          if ( Session["LoggedInAs"] == null ) {
-            Response.Redirect("index.aspx");
+            Response.Redirect("account.aspx");
          }
          else {
             var Cord = new BlogEntities();
@@ -40,7 +37,7 @@ namespace _1_Blog {
          var tempID = Cord.Accounts
             .Where(temp => temp.usrID == sesID)
             .FirstOrDefault();
-         ((TextBox)sender).Text = tempID.usrFullName;
+         ( (TextBox)sender ).Text = tempID.usrFullName;
       }
 
       protected void publishArticle(object sender, EventArgs e) {
@@ -59,6 +56,16 @@ namespace _1_Blog {
          }
 
          BlogEntities Cord = new BlogEntities();
+
+         foreach ( ListItem item in in_add_catcheck.Items ) {
+            if ( item.Selected ) {
+               Rel_Article_Category Rel = new Rel_Article_Category();
+               Rel.relArtID = Art.artID;
+               Rel.relCatID = Convert.ToInt32(item.Value);
+               Cord.Rel_Article_Category.Add(Rel);
+            }
+         }
+
          Cord.Articles.Add(Art);
          Cord.SaveChanges();
          UpdateList(ArticleList);
@@ -103,6 +110,18 @@ namespace _1_Blog {
 
          Cord.Categories.Add(Cat);
          Cord.SaveChanges();
+      }
+
+      protected void in_add_cat_Load(object sender, EventArgs e) {
+         UpdateComboBox(sender);
+      }
+
+      private static void UpdateComboBox(object sender) {
+         BlogEntities Cord = new BlogEntities();
+         ( (CheckBoxList)sender ).DataSource = Cord.Categories.ToList();
+         ( (CheckBoxList)sender ).DataTextField = "catName";
+         ( (CheckBoxList)sender ).DataValueField = "catID";
+         ( (CheckBoxList)sender ).DataBind();
       }
    }
 }

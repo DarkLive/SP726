@@ -15,7 +15,6 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
-    <img src="imgs/banner.jpg" class="img-fluid" style="height: 100%" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Mid" runat="server">
     <section id="alertthis" class="col-lg-12 alert alert-danger" style="display: none" runat="server"></section>
@@ -28,7 +27,6 @@
             Password: <span class="badge badge-primary">&#42;</span><br />
             <asp:TextBox ID="in_Log_Password" TextMode="Password" MaxLength="50" CssClass="form-control" runat="server"></asp:TextBox><br />
             <br />
-
             <asp:Button Text="Login" CssClass="form-control" OnClick="login" runat="server" />
         </section>
         <section class="col-lg-4 ml-1 float-left">
@@ -44,7 +42,6 @@
             Avatar:
             <br />
             <asp:FileUpload ID="in_Reg_Avatar" AllowMultiple="false" CssClass="form-control" runat="server" /><br />
-
             <asp:Button Text="Register" CssClass="form-control" OnClick="register" runat="server" />
         </section>
         <section class="col-lg-2 float-left">&nbsp;</section>

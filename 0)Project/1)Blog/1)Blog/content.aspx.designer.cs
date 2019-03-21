@@ -10,60 +10,51 @@
 namespace _1_Blog {
     
     
-    public partial class entry {
+    public partial class content {
         
         /// <summary>
-        /// ArticleList control.
+        /// CategoriesList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList ArticleList;
+        protected global::System.Web.UI.WebControls.Repeater CategoriesList;
         
         /// <summary>
-        /// in_add_title control.
+        /// Last5Post control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_add_title;
+        protected global::System.Web.UI.WebControls.Repeater Last5Post;
         
         /// <summary>
-        /// in_add_text control.
+        /// errorcode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_add_text;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorcode;
         
         /// <summary>
-        /// in_add_catcheck control.
+        /// PostRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList in_add_catcheck;
+        protected global::System.Web.UI.WebControls.Repeater PostRepeater;
         
         /// <summary>
-        /// in_add_articlepic control.
+        /// CategoryRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload in_add_articlepic;
-        
-        /// <summary>
-        /// in_add_catname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox in_add_catname;
+        protected global::System.Web.UI.WebControls.Repeater CategoryRepeater;
     }
 }

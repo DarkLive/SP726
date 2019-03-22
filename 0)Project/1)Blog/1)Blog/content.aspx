@@ -12,7 +12,8 @@
                     <li class="list-group-item list-group-item-dark">Categories</li>
             </HeaderTemplate>
             <ItemTemplate>
-                <asp:HyperLink NavigateUrl='content.aspx?cat<%# Eval("catID") %>' Text='<%# Eval("catName") %>' runat="server" /></li>
+                <li class="list-group-item list-group-item-action">
+                    <a href='content.aspx?art<%# Eval("catID") %>'><%# Eval("catName") %></a></li>
             </ItemTemplate>
             <FooterTemplate></ul></FooterTemplate>
         </asp:Repeater>
@@ -24,7 +25,7 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <li class="list-group-item list-group-item-action">
-                    <asp:HyperLink NavigateUrl='content.aspx?art<%# Eval("artID") %>' Text='<%# Eval("artTitle") %>' runat="server" /></li>
+                    <a href='content.aspx?art<%# Eval("artID") %>'><%# Eval("artTitle") %></a></li>
             </ItemTemplate>
             <FooterTemplate></ul></FooterTemplate>
         </asp:Repeater>

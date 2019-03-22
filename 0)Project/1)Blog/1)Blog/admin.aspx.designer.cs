@@ -10,7 +10,7 @@
 namespace _1_Blog {
     
     
-    public partial class entry {
+    public partial class admin {
         
         /// <summary>
         /// ArticleList control.

@@ -27,7 +27,7 @@
         <section class="collapse navbar-collapse" id="navbarToggle">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <asp:HyperLink ID="nav_Home" class="nav-link" NavigateUrl="~/index.aspx" runat="server">Blog<span class="sr-only">(current)</span></asp:HyperLink>
+                    <asp:HyperLink ID="nav_Home" class="nav-link" NavigateUrl="~/index.aspx" runat="server">Index<span class="sr-only">(current)</span></asp:HyperLink>
                 </li>
                 <li class="nav-item">
                     <asp:HyperLink ID="nav_About" class="nav-link" NavigateUrl="~/about_us.aspx" runat="server">About Us<span class="sr-only">(current)</span></asp:HyperLink>

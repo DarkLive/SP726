@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Blog" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="_1_Blog.index" %>
+﻿<%@ Page Title="Index" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="_1_Blog.index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="src" runat="server">
     <script>
@@ -18,7 +18,8 @@
                     <li class="list-group-item list-group-item-dark">Categories</li>
             </HeaderTemplate>
             <ItemTemplate>
-                <li class="list-group-item list-group-item-action"><%# Eval("catName") %></li>
+                <li class="list-group-item list-group-item-action">
+                    <a href='content.aspx?art<%# Eval("catID") %>'><%# Eval("catName") %></a></li>
             </ItemTemplate>
             <FooterTemplate></ul></FooterTemplate>
         </asp:Repeater>
@@ -30,27 +31,40 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <li class="list-group-item list-group-item-action">
-                    <asp:HyperLink NavigateUrl='show.aspx?art<%# Eval("artID") %>' Text='<%# Eval("artTitle") %>' runat="server" /></li>
+                    <a href='content.aspx?art<%# Eval("artID") %>'><%# Eval("artTitle") %></a></li>
             </ItemTemplate>
             <FooterTemplate></ul></FooterTemplate>
         </asp:Repeater>
     </section>
     <!-- MidRight -->
-    <asp:Repeater ID="PostRepeater" runat="server">
-        <ItemTemplate>
-            <section class="col-lg-10 float-left p-2 mb-2 border">
-                <section class="card float-left" style="width: 10rem">
-                    <asp:Image ID="con_Image" class="card-img-top" runat="server" ImageUrl='<%# Eval("artImage")%>' />
-                    <section class="card-body" runat="server">
-                        <h5 id="con_Author" class="card-title" runat="server"><%# Eval("Account.usrFullName")%></h5>
-                        <p id="con_Title" class="card-text" runat="server"><%# Eval("artTitle")%></p>
-                        <p id="con_Date" class="card-text" runat="server"><%# Eval("artPublishDate")%></p>
+
+    <section id="carouselX" class="col-lg-10 float-left carousel slide" style="height: 250px" data-ride="carousel">
+        <section class="carousel-inner">
+            <asp:Repeater ID="sliderRepeaterCurrent" runat="server">
+                <ItemTemplate>
+                    <section class="carousel-item active overflow-auto col-lg-9">
+                        <img class="d-block img-fluid" style="width: 100%; height: 250px" src="<%# Eval("artImage") %>">
+                        <section class="carousel-caption border-dark rounded-circle navbar-dark bg-dark d-md-block"><%# Eval("artTitle") %></section>
                     </section>
-                </section>
-                <article class="ml-1 float-left" style="width: calc(98% - 10rem)">
-                    <p id="con_Text" runat="server"><%# Eval("artText")%></p>
-                </article>
-            </section>
-        </ItemTemplate>
-    </asp:Repeater>
+                </ItemTemplate>
+            </asp:Repeater>
+            <asp:Repeater ID="sliderRepeater" runat="server">
+                <ItemTemplate>
+                    <section class="carousel-item">
+                        <img class="d-block img-fluid" style="width: 100%; height: 250px" src="<%# Eval("artImage") %>">
+                        <section class="carousel-caption border-dark rounded-circle navbar-dark bg-dark d-md-block"><%# Eval("artTitle") %></section>
+                    </section>
+                </ItemTemplate>
+            </asp:Repeater>
+        </section>
+        <a class="carousel-control-prev" href="#carouselX" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselX" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </section>
+
 </asp:Content>

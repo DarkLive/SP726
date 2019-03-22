@@ -31,12 +31,21 @@ namespace _1_Blog {
         protected global::System.Web.UI.WebControls.Repeater Last5Post;
         
         /// <summary>
-        /// PostRepeater control.
+        /// sliderRepeaterCurrent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater PostRepeater;
+        protected global::System.Web.UI.WebControls.Repeater sliderRepeaterCurrent;
+        
+        /// <summary>
+        /// sliderRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater sliderRepeater;
     }
 }

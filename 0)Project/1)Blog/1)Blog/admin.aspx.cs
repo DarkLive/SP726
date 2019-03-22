@@ -4,7 +4,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace _1_Blog {
-   public partial class entry : Page {
+   public partial class admin : Page {
       protected void Page_Load(object sender, EventArgs e) {
          if ( IsPostBack ) return;
          if ( Session["LoggedInAs"] == null ) {
@@ -42,7 +42,7 @@ namespace _1_Blog {
 
       protected void publishArticle(object sender, EventArgs e) {
 
-         Article Art = new Article() {
+         Article ArticleX = new Article() {
             artWriter = Convert.ToInt32(Session["LoggedInAs"].ToString()),
             artPublishDate = DateTime.Now,
             artUpdateDate = DateTime.Now,
@@ -51,22 +51,23 @@ namespace _1_Blog {
          };
 
          if ( in_add_articlepic.PostedFile != null || in_add_articlepic.PostedFile.FileName != null || in_add_articlepic.PostedFile.FileName != "" ) {
-            Art.artImage = $"imgs/article/{DateTime.Today.ToString("dd-MM-yyyy")}_{Guid.NewGuid().ToString().Replace("-", "")}_{in_add_articlepic.FileName}";
-            in_add_articlepic.SaveAs(Server.MapPath("~/" + Art.artImage));
+            ArticleX.artImage = $"imgs/article/{DateTime.Today.ToString("dd-MM-yyyy")}_{Guid.NewGuid().ToString().Replace("-", "")}_{in_add_articlepic.FileName}";
+            in_add_articlepic.SaveAs(Server.MapPath("~/" + ArticleX.artImage));
          }
 
          BlogEntities Cord = new BlogEntities();
+         Rel_Article_Category Rel = new Rel_Article_Category() {
+            relArtID = ArticleX.artID
+         };
 
          foreach ( ListItem item in in_add_catcheck.Items ) {
             if ( item.Selected ) {
-               Rel_Article_Category Rel = new Rel_Article_Category();
-               Rel.relArtID = Art.artID;
                Rel.relCatID = Convert.ToInt32(item.Value);
                Cord.Rel_Article_Category.Add(Rel);
             }
          }
 
-         Cord.Articles.Add(Art);
+         Cord.Articles.Add(ArticleX);
          Cord.SaveChanges();
          UpdateList(ArticleList);
       }
@@ -86,6 +87,19 @@ namespace _1_Blog {
          ArticleX.artUpdateDate = DateTime.Now;
          ArticleX.artTitle = ( e.Item.FindControl("in_Up_Title") as TextBox ).Text;
          ArticleX.artText = ( e.Item.FindControl("in_Up_Text") as TextBox ).Text;
+         ArticleX.artActive = ( e.Item.FindControl("in_Up_Active") as CheckBox ).Checked;
+
+         Rel_Article_Category Rel = new Rel_Article_Category() {
+            relArtID = ArticleX.artID
+         };
+
+         foreach ( ListItem item in ( (CheckBoxList)e.Item.FindControl("in_Up_Cat") ).Items ) {
+            Response.Write(item + item.Value + item.Selected + "\n");
+            if ( item.Selected ) {
+               Rel.relCatID = Convert.ToInt32(item.Value);
+               Cord.Rel_Article_Category.Add(Rel);
+            }
+         }
 
          Cord.SaveChanges();
          ArticleList.EditItemIndex = -1;
@@ -112,16 +126,18 @@ namespace _1_Blog {
          Cord.SaveChanges();
       }
 
-      protected void in_add_cat_Load(object sender, EventArgs e) {
-         UpdateComboBox(sender);
-      }
-
-      private static void UpdateComboBox(object sender) {
+      protected void category_load(object sender, EventArgs e) {
          BlogEntities Cord = new BlogEntities();
          ( (CheckBoxList)sender ).DataSource = Cord.Categories.ToList();
          ( (CheckBoxList)sender ).DataTextField = "catName";
          ( (CheckBoxList)sender ).DataValueField = "catID";
          ( (CheckBoxList)sender ).DataBind();
+
+         in_add_catname.TextChanged
+      }
+
+      protected void writerload(object sender, EventArgs e) {
+         ( (TextBox)sender ).Text = Session["LoggedInAs"].ToString();
       }
    }
 }

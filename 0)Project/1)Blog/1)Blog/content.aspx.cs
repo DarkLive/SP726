@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -30,8 +28,9 @@ namespace _1_Blog {
          else if ( getitem.Contains("art") ) {
             int that = Convert.ToInt32(getitem.Remove(0, 3));
             PostRepeater.DataSource = Cord.Articles.ToList()
-               .Where(temp => temp.artID == that);
+               .Where(temp => temp.artID == that && temp.artActive == true);
             PostRepeater.DataBind();
+            if ( PostRepeater.Items.Count == 0 ) errorcode.Visible = true;
             PostRepeater.Visible = true;
          }
          else {

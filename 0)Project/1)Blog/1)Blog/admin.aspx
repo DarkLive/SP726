@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Administirator Panel" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="_1_Blog.entry" %>
+﻿<%@ Page Title="Administirator Panel" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="_1_Blog.admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="src" runat="server">
     <script>
@@ -25,6 +25,7 @@
                                 <th scope="col">Image</th>
                                 <th scope="col">Writer</th>
                                 <th scope="col">Active</th>
+                                <th scope="col">Categories</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -49,19 +50,21 @@
                 <EditItemTemplate>
                     <asp:TextBox Text='<%# Eval("artID") %>' CssClass="form-control" ReadOnly="true" runat="server" /></td>
                     <td>
-                        <asp:TextBox Text='<%# Eval("artText") %>' CssClass="form-control" runat="server" /></td>
+                        <asp:TextBox ID="in_Up_Title" Text='<%# Eval("artTitle") %>' CssClass="form-control" runat="server" /></td>
                     <td>
-                        <asp:TextBox TextMode="MultiLine" Text='<%# Eval("artText") %>' CssClass="form-control" runat="server" /></td>
+                        <asp:TextBox ID="in_Up_Text" TextMode="MultiLine" Text='<%# Eval("artText") %>' CssClass="form-control" runat="server" /></td>
                     <td>
-                        <asp:TextBox TextMode="DateTime" ReadOnly="true" CssClass="form-control" Text='<%# Convert.ToDateTime(Eval("artPublishDate")).ToString("dd-MM-yyyy hh:mm") %>' runat="server" /></td>
+                        <asp:TextBox ID="in_Up_UpdateDate" TextMode="DateTime" ReadOnly="true" CssClass="form-control" Text='<%# Convert.ToDateTime(Eval("artPublishDate")).ToString("dd-MM-yyyy hh:mm") %>' runat="server" /></td>
                     <td>
                         <asp:TextBox ReadOnly="true" Text="Now" CssClass="form-control" runat="server" /></td>
                     <td>
                         <asp:TextBox ReadOnly="true" Text='<%# Eval("artImage") %>' CssClass="form-control" runat="server" /></td>
                     <td>
-                        <asp:TextBox ReadOnly="true" Text='<%# Eval("Account.usrFullName") %>' CssClass="form-control" runat="server" /></td>
+                        <asp:TextBox OnLoad="writerload" ReadOnly="true" Text="X" CssClass="form-control" runat="server" /></td>
                     <td>
-                        <asp:CheckBox Text='<%# Eval("artActive") %>' CssClass="form-control" runat="server" /></td>
+                        <asp:CheckBox ID="in_Up_Active" Checked='<%# Eval("artActive") %>' CssClass="form-control" runat="server" /></td>
+                    <td>
+                        <asp:CheckBoxList ID="in_Up_Cat"  OnLoad="category_load" runat="server"></asp:CheckBoxList></td>
                     <th>
                         <asp:LinkButton ID="btn_Update" CssClass="form-control" CommandName="Update" CommandArgument='<%# Eval("artID") %>' runat="server">Update</asp:LinkButton></th>
                     <th>
@@ -82,7 +85,7 @@
             Text:<br />
             <asp:TextBox ID="in_add_text" Rows="10" Columns="5" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox><br />
             Categories:<br />
-            <asp:CheckBoxList ID="in_add_catcheck" OnLoad="in_add_cat_Load" CssClass="form-check-inline" runat="server"></asp:CheckBoxList><br />
+            <asp:CheckBoxList ID="in_add_catcheck" OnLoad="category_load" CssClass="form-check-inline" runat="server"></asp:CheckBoxList><br />
             Image:<br />
             <asp:FileUpload ID="in_add_articlepic" CssClass="form-control" runat="server" /><br />
             <asp:Button Text="Publish" CssClass="form-control" OnClick="publishArticle" runat="server" />

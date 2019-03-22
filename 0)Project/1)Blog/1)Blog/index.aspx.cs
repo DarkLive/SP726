@@ -9,19 +9,21 @@ namespace _1_Blog {
       protected void Page_Load(object sender, EventArgs e) {
          BlogEntities Cord = new BlogEntities();
 
-         PostRepeater.DataSource = Cord.Articles
+         sliderRepeaterCurrent.DataSource = Cord.Articles.ToList()
             .OrderByDescending(temp => temp.artID)
-            .ToList()
-            .Where(temp => temp.artActive == true);
-         PostRepeater.DataBind();
+            .Where(temp => temp.artActive == true).Take(1);
+         sliderRepeaterCurrent.DataBind();
 
-         CategoriesList.DataSource = Cord.Categories
-            .ToList();
+         sliderRepeater.DataSource = Cord.Articles.ToList()
+            .OrderByDescending(temp => temp.artID)
+            .Where(temp => temp.artActive == true).Skip(1).Take(4);
+         sliderRepeater.DataBind();
+
+         CategoriesList.DataSource = Cord.Categories.ToList();
          CategoriesList.DataBind();
 
-         Last5Post.DataSource = Cord.Articles
+         Last5Post.DataSource = Cord.Articles.ToList()
             .OrderByDescending(temp => temp.artID)
-            .ToList()
             .Where(temp => temp.artActive == true).Take(5);
          Last5Post.DataBind();
       }

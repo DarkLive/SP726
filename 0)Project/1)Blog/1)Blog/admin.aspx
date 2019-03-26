@@ -34,7 +34,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <%# Eval("artID") %></th>
-                        <td><%# Eval("artTitle") %></td>
+                    <td><%# Eval("artTitle") %></td>
                     <td><%# Eval("artText") %></td>
                     <td><%# Convert.ToDateTime(Eval("artPublishDate")).ToString("dd-MM-yyyy hh:mm") %></td>
                     <td><%# Convert.ToDateTime(Eval("artUpdateDate")).ToString("dd-MM-yyyy hh:mm") %></td>

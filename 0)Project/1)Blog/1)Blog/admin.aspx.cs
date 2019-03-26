@@ -132,8 +132,6 @@ namespace _1_Blog {
          ( (CheckBoxList)sender ).DataTextField = "catName";
          ( (CheckBoxList)sender ).DataValueField = "catID";
          ( (CheckBoxList)sender ).DataBind();
-
-         in_add_catname.TextChanged
       }
 
       protected void writerload(object sender, EventArgs e) {

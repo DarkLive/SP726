@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ListStaff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using _1_MVC01.Models
+
+<h2>ListStaff</h2>
+
+@foreach (Eleman item in ViewBag.StaffList)
+{
+    <section>
+        <hr /> Name: @item.Ad | Surname: @item.Soyad | City: @item.Sehir
+    </section>
+}
+

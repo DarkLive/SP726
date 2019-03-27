@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "AddStaff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddStaff</h2>
+<br />
+<form action="/Staff/AddStaff" method="post">
+    <input name="name" type="text" placeholder="Name" class="form-control" /><br />
+    <input name="surname" type="text" placeholder="Surname" class="form-control" /><br />
+    <input name="city" type="text" placeholder="City" class="form-control" /><br />
+    <button type="submit" class="form-control">Add Staff</button>
+</form>

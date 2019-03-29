@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Dark_PR01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="usrID" />
+          </Key>
+          <Property Name="usrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usrFullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="usrEmail" Type="nvarchar" MaxLength="225" Nullable="false" />
+          <Property Name="usrPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="usrBirthDay" Type="date" Nullable="false" />
+          <Property Name="usrRegistered" Type="datetime" Nullable="false" />
+          <Property Name="usrRemoved" Type="date" />
+          <Property Name="usrImg" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="usrActive" Type="bit" Nullable="false" />
+          <Property Name="usrRole" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="artID" />
+          </Key>
+          <Property Name="artID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="artTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="artText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="artPublishDate" Type="datetime" Nullable="false" />
+          <Property Name="artUpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="artImage" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="artWriter" Type="int" Nullable="false" />
+          <Property Name="artActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="catID" />
+          </Key>
+          <Property Name="catID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="catName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rel_Article_Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="relArtID" Type="int" Nullable="false" />
+          <Property Name="relCatID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Article_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="usrID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="artWriter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rel_Article_Category_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="Rel_Article_Category" Type="Self.Rel_Article_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="artID" />
+            </Principal>
+            <Dependent Role="Rel_Article_Category">
+              <PropertyRef Name="relArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rel_Article_Category_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Rel_Article_Category" Type="Self.Rel_Article_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="catID" />
+            </Principal>
+            <Dependent Role="Rel_Article_Category">
+              <PropertyRef Name="relCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Dark_PR01ModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rel_Article_Category" EntityType="Self.Rel_Article_Category" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Article_Account" Association="Self.FK_Article_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rel_Article_Category_Article" Association="Self.FK_Rel_Article_Category_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Rel_Article_Category" EntitySet="Rel_Article_Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rel_Article_Category_Category" Association="Self.FK_Rel_Article_Category_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Rel_Article_Category" EntitySet="Rel_Article_Category" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Dark_PR01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="usrID" />
+          </Key>
+          <Property Name="usrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usrFullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usrEmail" Type="String" MaxLength="225" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usrPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usrBirthDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usrRegistered" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usrRemoved" Type="DateTime" Precision="0" />
+          <Property Name="usrImg" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usrActive" Type="Boolean" Nullable="false" />
+          <Property Name="usrRole" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_Account" FromRole="Account" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="artID" />
+          </Key>
+          <Property Name="artID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="artTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="artText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="artPublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="artUpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="artImage" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="artWriter" Type="Int32" Nullable="false" />
+          <Property Name="artActive" Type="Boolean" Nullable="false" DefaultValue="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Article_Account" FromRole="Article" ToRole="Account" />
+          <NavigationProperty Name="Rel_Article_Category" Relationship="Self.FK_Rel_Article_Category_Article" FromRole="Article" ToRole="Rel_Article_Category" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="catID" />
+          </Key>
+          <Property Name="catID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rel_Article_Category" Relationship="Self.FK_Rel_Article_Category_Category" FromRole="Category" ToRole="Rel_Article_Category" />
+        </EntityType>
+        <EntityType Name="Rel_Article_Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="relArtID" Type="Int32" Nullable="false" />
+          <Property Name="relCatID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Rel_Article_Category_Article" FromRole="Rel_Article_Category" ToRole="Article" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Rel_Article_Category_Category" FromRole="Rel_Article_Category" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_Article_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="usrID" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="artWriter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rel_Article_Category_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="Rel_Article_Category" Type="Self.Rel_Article_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="artID" />
+            </Principal>
+            <Dependent Role="Rel_Article_Category">
+              <PropertyRef Name="relArtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rel_Article_Category_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Rel_Article_Category" Type="Self.Rel_Article_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="catID" />
+            </Principal>
+            <Dependent Role="Rel_Article_Category">
+              <PropertyRef Name="relCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Rel_Article_Category" EntityType="Self.Rel_Article_Category" />
+          <AssociationSet Name="FK_Article_Account" Association="Self.FK_Article_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rel_Article_Category_Article" Association="Self.FK_Rel_Article_Category_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Rel_Article_Category" EntitySet="Rel_Article_Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rel_Article_Category_Category" Association="Self.FK_Rel_Article_Category_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Rel_Article_Category" EntitySet="Rel_Article_Category" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Dark_PR01ModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="Dark_PR01Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="usrID" ColumnName="usrID" />
+                <ScalarProperty Name="usrFullName" ColumnName="usrFullName" />
+                <ScalarProperty Name="usrEmail" ColumnName="usrEmail" />
+                <ScalarProperty Name="usrPassword" ColumnName="usrPassword" />
+                <ScalarProperty Name="usrBirthDay" ColumnName="usrBirthDay" />
+                <ScalarProperty Name="usrRegistered" ColumnName="usrRegistered" />
+                <ScalarProperty Name="usrRemoved" ColumnName="usrRemoved" />
+                <ScalarProperty Name="usrImg" ColumnName="usrImg" />
+                <ScalarProperty Name="usrActive" ColumnName="usrActive" />
+                <ScalarProperty Name="usrRole" ColumnName="usrRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="Dark_PR01Model.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="artID" ColumnName="artID" />
+                <ScalarProperty Name="artTitle" ColumnName="artTitle" />
+                <ScalarProperty Name="artText" ColumnName="artText" />
+                <ScalarProperty Name="artPublishDate" ColumnName="artPublishDate" />
+                <ScalarProperty Name="artUpdateDate" ColumnName="artUpdateDate" />
+                <ScalarProperty Name="artImage" ColumnName="artImage" />
+                <ScalarProperty Name="artWriter" ColumnName="artWriter" />
+                <ScalarProperty Name="artActive" ColumnName="artActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Dark_PR01Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="catID" ColumnName="catID" />
+                <ScalarProperty Name="catName" ColumnName="catName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rel_Article_Category">
+            <EntityTypeMapping TypeName="Dark_PR01Model.Rel_Article_Category">
+              <MappingFragment StoreEntitySet="Rel_Article_Category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="relArtID" ColumnName="relArtID" />
+                <ScalarProperty Name="relCatID" ColumnName="relCatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+
+@section Main{
+    <form action="/Blog/Add" method="post" enctype="multipart/form-data">
+        Title: <input name="artTitle" type="text" /><br />
+        Text: <textarea name="artText" rows="5"></textarea><br />
+        Date: <input name="artPublishDate" type="datetime" /><br />
+        Picture: <input name="articlepic" type="file" /><br />
+        Writer: <input name="artWriter" type="number" /><br />
+        <button type="submit">Add</button>
+    </form>
+
+}
+

@@ -143,6 +143,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\classy-nav.min.js" />
     <Content Include="js\jquery\jquery-2.2.4.min.js" />
+    <Content Include="js\jquery\jQuery3-3-1.js" />
     <Content Include="js\map-active.js" />
     <Content Include="js\plugins.js" />
     <Content Include="js\popper.min.js" />

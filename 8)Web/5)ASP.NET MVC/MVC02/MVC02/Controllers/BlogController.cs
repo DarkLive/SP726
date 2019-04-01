@@ -25,7 +25,7 @@ namespace MVC02.Controllers {
             DBEntities Cord = new DBEntities();
             Cord.Articles.Add(art);
             Cord.SaveChanges();
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
     }
 }

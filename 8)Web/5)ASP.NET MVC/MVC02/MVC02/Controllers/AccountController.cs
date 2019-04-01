@@ -17,18 +17,23 @@ namespace MVC02.Controllers {
         }
 
         [HttpPost]
-        public ActionResult Add(Account acc, HttpPostedFileBase usrpic) {
+        public bool Add(Account acc, HttpPostedFileBase usrpic) {
             acc.usrRegistered = DateTime.Now;
-            
-            if(usrpic != null && usrpic.FileName != null && usrpic.FileName != "") {
-                acc.usrImg = $"img/content/user/{DateTime.Now.ToShortDateString()}_{Guid.NewGuid().ToString().Replace("-", "")}_{usrpic.FileName}";
-                usrpic.SaveAs(Server.MapPath("~/" + acc.usrImg));
-            }
 
-            DBEntities Cord = new DBEntities();
-            Cord.Accounts.Add(acc);
-            Cord.SaveChanges();
-            return Redirect("Index");
+            try {
+                if (usrpic != null && usrpic.FileName != null && usrpic.FileName != "") {
+                    acc.usrImg = $"img/content/user/{DateTime.Now.ToShortDateString()}_{Guid.NewGuid().ToString().Replace("-", "")}_{usrpic.FileName}";
+                    usrpic.SaveAs(Server.MapPath("~/" + acc.usrImg));
+                }
+
+                DBEntities Cord = new DBEntities();
+                Cord.Accounts.Add(acc);
+                Cord.SaveChanges();
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
     }
 }

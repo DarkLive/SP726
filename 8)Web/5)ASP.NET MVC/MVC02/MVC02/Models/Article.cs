@@ -11,7 +11,7 @@ namespace MVC02.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Article
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +21,21 @@ namespace MVC02.Models
             this.Rel_Article_Category = new HashSet<Rel_Article_Category>();
         }
     
+        [Display(Name = "ID")]
         public int artID { get; set; }
+        [Display(Name = "Title")]
         public string artTitle { get; set; }
+        [Display(Name = "Context")]
         public string artText { get; set; }
+        [Display(Name = "Published")]
         public System.DateTime artPublishDate { get; set; }
+        [Display(Name = "Updated")]
         public System.DateTime artUpdateDate { get; set; }
+        [Display(Name = "Image")]
         public string artImage { get; set; }
+        [Display(Name = "Writer")]
         public int artWriter { get; set; }
+        [Display(Name = "Active?")]
         public bool artActive { get; set; }
     
         public virtual Account Account { get; set; }

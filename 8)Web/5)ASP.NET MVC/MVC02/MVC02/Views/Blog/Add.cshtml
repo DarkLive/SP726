@@ -4,15 +4,31 @@
     Layout = "~/Views/_Shared/_Layout.cshtml";
 }
 
-@section Main{
-    <form action="/Blog/Add" method="post" enctype="multipart/form-data">
-        Title: <input name="artTitle" type="text" /><br />
-        Text: <textarea name="artText" rows="5"></textarea><br />
-        Date: <input name="artPublishDate" type="datetime" /><br />
-        Picture: <input name="articlepic" type="file" /><br />
-        Writer: <input name="artWriter" type="number" /><br />
-        <button type="submit">Add</button>
-    </form>
+@using MVC02.Models
+@model Article
 
+@section Main{
+    <section class="col-5">
+        <form action="/Blog/Add" method="post" enctype="multipart/form-data">
+
+            @Html.LabelFor(m => m.artTitle)
+            @Html.TextBoxFor(m => m.artTitle, new { @type = "text", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.artTitle)<br />
+
+            @Html.LabelFor(m => m.artText)
+            @Html.TextAreaFor(m => m.artText, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.artText)<br />
+
+            @Html.LabelFor(m => m.artImage)
+            @Html.TextBox("articlepic", null, new { @type = "file", @class = "form-control" })<br />
+
+            @Html.LabelFor(m => m.artWriter)
+            @Html.TextBoxFor(m => m.artWriter, new { @type = "text", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.artWriter)<br />
+
+            <button type="submit" class="form-control">Add</button>
+
+        </form>
+    </section>
 }
 

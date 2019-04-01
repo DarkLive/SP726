@@ -11,24 +11,37 @@ namespace MVC02.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
+            this.usrImg = "img/content/user/defaultuser.png";
+            this.usrActive = true;
+            this.usrRole = 1;
             this.Articles = new HashSet<Article>();
         }
     
+        [Display(Name = "ID")]
         public int usrID { get; set; }
+        [Display(Name = "Full Name")]
         public string usrFullName { get; set; }
+        [Display(Name = "Email")]
         public string usrEmail { get; set; }
+        [Display(Name = "Password")]
         public string usrPassword { get; set; }
+        [Display(Name = "Birthday")]
         public System.DateTime usrBirthDay { get; set; }
+        [Display(Name = "Registered")]
         public System.DateTime usrRegistered { get; set; }
+        [Display(Name = "Removed")]
         public Nullable<System.DateTime> usrRemoved { get; set; }
+        [Display(Name = "Avatar")]
         public string usrImg { get; set; }
+        [Display(Name = "Active?")]
         public bool usrActive { get; set; }
+        [Display(Name = "Role")]
         public byte usrRole { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

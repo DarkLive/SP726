@@ -111,7 +111,7 @@
           <Key>
             <PropertyRef Name="usrID" />
           </Key>
-          <Property Name="usrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ></Property>
           <Property Name="usrFullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="usrEmail" Type="String" MaxLength="225" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="usrPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -119,8 +119,8 @@
           <Property Name="usrRegistered" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="usrRemoved" Type="DateTime" Precision="0" />
           <Property Name="usrImg" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="usrActive" Type="Boolean" Nullable="false" />
-          <Property Name="usrRole" Type="Byte" Nullable="false" />
+          <Property Name="usrActive" Type="Boolean" Nullable="false" DefaultValue="true" />
+          <Property Name="usrRole" Type="Byte" Nullable="false" DefaultValue="1" />
           <NavigationProperty Name="Articles" Relationship="Self.FK_Article_Account" FromRole="Account" ToRole="Article" />
         </EntityType>
         <EntityType Name="Article">

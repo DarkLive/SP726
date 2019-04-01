@@ -18,9 +18,10 @@ namespace MVC02.Controllers {
 
         [HttpPost]
         public ActionResult Add(Article art, HttpPostedFileBase articlepic) {
-            art.artImage = $"{DateTime.Now.ToShortDateString()}_{Guid.NewGuid().ToString().Replace("-","")}_{articlepic.FileName}";
-            articlepic.SaveAs(Server.MapPath("~/ " + art.artImage));
-            art.artUpdateDate = art.artPublishDate;
+            art.artPublishDate = DateTime.Now; art.artUpdateDate = art.artPublishDate;
+            art.artImage = $"img/content/article/{DateTime.Now.ToShortDateString()}_{Guid.NewGuid().ToString().Replace("-","")}_{articlepic.FileName}";
+            articlepic.SaveAs(Server.MapPath("~/" + art.artImage));
+
             DBEntities Cord = new DBEntities();
             Cord.Articles.Add(art);
             Cord.SaveChanges();

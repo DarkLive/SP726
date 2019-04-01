@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Shared/_Layout.cshtml";
+}
+@using MVC02.Models
+@model List<Account>
+
+@section Main{
+    @foreach (Account item in Model) {
+        @item.usrID;<br />
+        @item.usrFullName;<br />
+    }
+}

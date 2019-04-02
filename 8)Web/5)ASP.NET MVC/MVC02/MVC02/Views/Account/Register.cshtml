@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Register";
     Layout = "~/Views/_Shared/_Layout.cshtml";
 }
 @using MVC02.Models
@@ -8,7 +8,7 @@
 
 @section Main{
     <section class="col-5">
-        <form name="ActionForm" id="ActionForm" action="/Account/Add" method="post" enctype="multipart/form-data">
+        <form name="ActionForm" id="ActionForm" enctype="multipart/form-data">
 
             @Html.LabelFor(m => m.usrFullName)
             @Html.TextBoxFor(m => m.usrFullName, new { @type = "text", @class = "form-control" })
@@ -35,30 +35,31 @@
     </section>
 }
 @section Source{
-    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript">
-        $("#ActionForm").submit(function () {
-            var xurl = $(this).attr("action");
-            var xtype = $(this).attr("method");
-            var xdata = new FormData(this);
+<script src="~/js/jquery/jQuery3-3-1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#ActionForm").submit(function (e) {
+                e.preventDefault();
 
-            $.ajax({
-                url: xurl,
-                type: xtype,
-                data: xdata,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (isdone) {
-                    if (isdone) {
-                        alert("Successful");
-                        window.location.replace("/Account/Index");
+                $.ajax({
+                    url: "/Account/Register",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (isdone) {
+                        if (isdone) {
+                            alert("Registiration Complete");
+                            window.location.replace("/Account/Index");
+                        } else {
+                            alert("Error on Registiration.");
+                        }
+                    },
+                    error: function () {
+                        alert("Connection Problem!");
                     }
-                    else alert("Failed");
-                },
-                error: function () {
-                    alert("Error");
-                }
+                });
             });
         });
     </script>

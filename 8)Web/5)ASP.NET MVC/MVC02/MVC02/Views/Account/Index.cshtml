@@ -4,13 +4,92 @@
     Layout = "~/Views/_Shared/_Layout.cshtml";
 }
 @using MVC02.Models
-@model List<Account>
+@model Account
+
+@{ var Cord = new DBEntities().Accounts.ToList(); }
 
 @section Main{
-    @foreach (Account item in Model) {
-        @item.usrID;<br />
-        @item.usrFullName;<br />
-    }
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">@Html.LabelFor(m => m.usrID)</th>
+                <th scope="col">@Html.LabelFor(m => m.usrImg)</th>
+                <th scope="col">@Html.LabelFor(m => m.usrFullName)</th>
+                <th scope="col">@Html.LabelFor(m => m.usrEmail)</th>
+                <th scope="col">@Html.LabelFor(m => m.usrBirthDay)</th>
+                <th scope="col">@Html.LabelFor(m => m.usrRegistered)</th>
+                <th scope="col">@Html.LabelFor(m => m.usrActive)</th>
+                <th scope="col">@Html.LabelFor(m => m.usrRole)</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Account item in Cord) {
+                <tr>
+                    <th scope="row">@item.usrID</th>
+                    <th scope="row"><img style="height:30px" src="/@item.usrImg" /></th>
+                    <th scope="row">@item.usrFullName</th>
+                    <th scope="row">@item.usrEmail</th>
+                    <th scope="row">@item.usrBirthDay</th>
+                    <th scope="row">@item.usrRegistered</th>
+                    <th scope="row">@item.usrActive</th>
+                    <th scope="row">@item.usrRole</th>
+                    <th scope="row"><button type="button" class="btn btn-danger fmodal" data-toggle="modal" data-target="#modalUp" data-userid="@item.usrID" data-username="@item.usrFullName">Remove</button></th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
-    
+@section Source{
+<script src="~/js/jquery/jQuery3-3-1.js"></script>
+    <script>
+        var tempid = 1;
+        $(document).ready(function () {
+            $(".fmodal").click(function () {
+                tempid = Number($(this).data("userid"));
+                $("span#jusername").text($(this).data("username"));
+            });
+
+            $(".btndeactivate").click(function () {
+                $.ajax({
+                    url: "/Account/Remove",
+                    type: "POST",
+                    data: { tempid: tempid },
+                    success: function (isdone) {
+                        if (isdone) {
+                            window.location.reload();
+                        } else {
+                            alert("Error on Deactivation.");
+                        }
+                    },
+                    error: function () {
+                        alert("Connection Problem!");
+                    }
+                })
+            });
+        });
+    </script>
+}
+
+@section Footer{
+    <section class="modal" id="modalUp" tabindex="-1" role="dialog" aria-labelledby="modalUpLabel" aria-hidden="true">
+        <section class="modal-dialog" role="document">
+            <section class="modal-content">
+                <section class="modal-header">
+                    <h5 class="modal-title" id="modalUpLabel">Deactivate?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </section>
+                <section class="modal-body">
+                    Do you want to deactive user named <span id="jusername"></span> ?
+                </section>
+                <section class="modal-footer">
+                    <button type="button" class="btn btn-danger btndeactivate">Deactivate</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </section>
+            </section>
+        </section>
+    </section>
 }

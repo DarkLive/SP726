@@ -1,0 +1,137 @@
+﻿<nav class="navbar navbar-expand-lg navbar-collapse navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler01" aria-controls="navbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggler01">
+        <a class="navbar-brand" href="#">Website Name</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+        @{if (Session["LoggedInAs"] == null) {
+                <button type="button" class="btn btn-success m-1" data-toggle="modal" data-target="#modalLog">Login</button>
+                <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modalReg">Register</button>
+            }
+            else {
+                <button type="button" id="logOut" class="btn btn-secondary m-1">LogOut</button>
+            }
+        }
+    </div>
+</nav>
+<script src="~/js/jquery/jQuery3-3-1.js"></script>
+<script>
+    $(document).ready(function () {
+        //Login
+        $("#LoginForm").submit(function () {
+            e.preventDefault();
+
+            $.ajax({
+                url: "/Account/Login",
+                type: "POST",
+                data: new FormData(this),
+                contentType:false,
+                cache:false,
+                processData: false,
+                success: function(isdone){
+                    if(isdone == true){
+                        alert("Logged In");
+                        window.location.reload(); }
+                    else{ alert("Problem"); }
+                },
+                error: function(){ alert("Error"); }
+            });
+        });
+        //Register
+        $("#RegisterForm").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "/Account/Register",
+                type: "POST",
+                data: new FormData(this),
+                contentType:false,
+                cache:false,
+                processData: false,
+                success: function(isdone){
+                    if(isdone == true){
+                        alert("Logged In");
+                        window.location.reload(); }
+                    else{ alert("Problem"); }
+                },
+                error: function(){ alert("Error"); }
+            });
+        });
+        //Logout
+        $("#logOut").click(function () {
+            @Session["LoggedInAs"] == null;
+            window.location.reload();
+        });
+
+        //Etc
+        $(".shownavpass").click(function () {
+            if ($(".upwd").attr("type") == "text") {
+                $(".upwd").attr("type", "password");
+                $(this).text("Hide");
+            }
+            else {
+                $(".upwd").attr("type", "text");
+                $(this).text("Show");
+            }
+        });
+    });
+</script>
+@{if (Session["LoggedInAs"] == null) {
+        <section class="modal" id="modalLog" tabindex="-1" role="dialog" aria-labelledby="modalLogLabel" aria-hidden="true">
+            <section class="modal-dialog" role="document">
+                <section class="modal-content">
+                    <section class="modal-header">
+                        <h5 class="modal-title" id="modalLogLabel">Edit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </section>
+                    <form name="LoginForm" id="LoginForm" enctype="multipart/form-data">
+                        <section class="modal-body">
+                            Email: <input name="usrEmail" type="email" class="form-control w-50" />
+                            Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button>
+                        </section>
+                        <section class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </section>
+                    </form>
+                </section>
+            </section>
+        </section>
+
+        <section class="modal" id="modalReg" tabindex="-1" role="dialog" aria-labelledby="modalRegLabel" aria-hidden="true">
+            <section class="modal-dialog" role="document">
+                <section class="modal-content">
+                    <section class="modal-header">
+                        <h5 class="modal-title" id="modalRegLabel">Edit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </section>
+                    <form name="RegisterForm" id="RegisterForm" enctype="multipart/form-data">
+                        <section class="modal-body">
+                            Full Name: <input name="usrFullName" type="text" class="form-control w-50" />
+                            Email: <input name="usrEmail" type="email" class="form-control w-50" />
+                            Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button><span class="clearfix"></span>
+                            Birthday: <input name="usrBirthDay" type="date" class="form-control w-50" />
+                            Image: <input name="usrImg" type="file" class="form-control w-50" />
+                        </section>
+                        <section class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </section>
+                    </form>
+                </section>
+            </section>
+        </section>
+    }
+}

@@ -4,7 +4,7 @@
     Layout = "~/Views/_Shared/_Layout.cshtml";
 }
 @using MVC02.Models
-@model Account
+@model MVC02.Models.Account
 
 @{ var Cord = new DBEntities().Accounts.ToList(); }
 
@@ -34,7 +34,10 @@
                     <th scope="row">@item.usrRegistered</th>
                     <th scope="row">@item.usrActive</th>
                     <th scope="row">@item.usrRole</th>
-                    <th scope="row"><button type="button" class="btn btn-danger fmodal" data-toggle="modal" data-target="#modalUp" data-userid="@item.usrID" data-username="@item.usrFullName">Remove</button></th>
+                    <th scope="row">
+                        <button type="button" class="btn btn-primary m-1 upmodal" data-toggle="modal" data-target="#modalUp" data-userid="@item.usrID" data-fullname="@item.usrFullName" data-email="@item.usrEmail" data-pwd="@item.usrPassword" data-birthday='@item.usrBirthDay.ToString("yyyy-MM-dd")' data-regdate='@item.usrRegistered.ToString("yyyy-MM-dd")' data-uimg="@item.usrImg" data-active="@item.usrActive" data-role="@item.usrRole">Update</button>
+                        <button type="button" class="btn btn-danger m-1 remmodal" data-toggle="modal" data-target="#modalRem" data-userid="@item.usrID" data-fullname="@item.usrFullName">Remove</button>
+                    </th>
                 </tr>
             }
         </tbody>
@@ -42,13 +45,63 @@
 }
 
 @section Source{
-<script src="~/js/jquery/jQuery3-3-1.js"></script>
+    <script src="~/js/jquery/jQuery3-3-1.js"></script>
     <script>
         var tempid = 1;
         $(document).ready(function () {
-            $(".fmodal").click(function () {
+
+            //Update
+            $(".upmodal").click(function () {
                 tempid = Number($(this).data("userid"));
-                $("span#jusername").text($(this).data("username"));
+                $(".umodalusrid").val($(this).data("userid"));
+                $(".umodalusrname").val($(this).data("fullname"));
+                $(".uemail").val($(this).data("email"));
+                $(".upwd").val($(this).data("pwd"));
+                $(".ubirthday").val($(this).data("birthday"));
+                $(".uimg").text($(this).data("img"));
+                if ($(this).data('active') == true) $(".uactive").toggle;
+                $(".urole").val($(this).data("role"));
+            });
+
+            $(".ActionForm").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/Account/Edit",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (isdone) {
+                        if (isdone) {
+                            alert("Update Complete");
+                            window.location.replace("/Account/Index");
+                        } else {
+                            alert("Error on Update.");
+                        }
+                    },
+                    error: function () {
+                        alert("Connection Problem!");
+                    }
+                });
+            });
+
+            $(".showpass").click(function () {
+                if ($(".upwd").attr("type") == "text") {
+                    $(".upwd").attr("type", "password");
+                    $(this).text("Hide");
+                }
+                else {
+                    $(".upwd").attr("type", "text");
+                    $(this).text("Show");
+                }
+            });
+
+            //Remove
+            $(".remmodal").click(function () {
+                tempid = Number($(this).data("userid"));
+                $("span#jusername").text($(this).data("fullname"));
             });
 
             $(".btndeactivate").click(function () {
@@ -77,7 +130,36 @@
         <section class="modal-dialog" role="document">
             <section class="modal-content">
                 <section class="modal-header">
-                    <h5 class="modal-title" id="modalUpLabel">Deactivate?</h5>
+                    <h5 class="modal-title" id="modalUpLabel">Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </section>
+                <form name="ActionForm" class="ActionForm" enctype="multipart/form-data">
+                    <section class="modal-body">
+                        ID: <input name="usrID" type="text" class="form-control w-50 disabled umodalusrid" />
+                        Full Name: <input name="usrFullName" type="text" class="form-control w-50 umodalusrname" />
+                        Email: <input name="usrEmail" type="email" class="form-control w-50 uemail" />
+                        Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left upwd" />&nbsp;<button type="button" class="form-control float-left w-25 showpass">Show</button><span class="clearfix"></span>
+                        Birthday: <input name="usrBirthDay" type="date" class="form-control w-50 ubirthday" />
+                        Image: <input name="usrImg" type="file" class="form-control w-50 uimg" />
+                        is Active?: <input name="usrActive" type="checkbox" class="form-check uactive" />
+                        Role: <input name="usrRole" type="number" class="form-control w-50 urole" min="1" max="3" />
+                    </section>
+                    <section class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </section>
+                </form>
+            </section>
+        </section>
+    </section>
+
+    <section class="modal" id="modalRem" tabindex="-1" role="dialog" aria-labelledby="modalRemLabel" aria-hidden="true">
+        <section class="modal-dialog" role="document">
+            <section class="modal-content">
+                <section class="modal-header">
+                    <h5 class="modal-title" id="modalRemLabel">Deactivate?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -86,7 +168,7 @@
                     Do you want to deactive user named <span id="jusername"></span> ?
                 </section>
                 <section class="modal-footer">
-                    <button type="button" class="btn btn-danger btndeactivate">Deactivate</button>
+                    <button type="button" class="btn btn-primary btndeactivate">Deactivate</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </section>
             </section>

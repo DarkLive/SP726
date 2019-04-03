@@ -37,19 +37,66 @@ namespace MVC02.Controllers {
         }
 
         [HttpPost]
-        public bool Remove(int tempid) {
-            DBEntities Cord = new DBEntities();
-            Account usr = Cord.Accounts.FirstOrDefault(t => t.usrID == tempid);
+        public bool Login(Account acc) {
 
             try {
-                if (System.IO.File.Exists(Server.MapPath("~/" + usr.usrImg)) && usr.usrImg != "img/content/user/defaultuser.png") {
-                    System.IO.File.Move(Server.MapPath("~/" + usr.usrImg), Server.MapPath("~/" + usr.usrImg.Replace("img/content/user", "img/content/olduser")));
-                    usr.usrImg = usr.usrImg.Replace("img/content/user", "img/content/olduser");
-                    Cord.SaveChanges();
+                Account usr = (new DBEntities()).Accounts.FirstOrDefault(t => t.usrEmail == acc.usrEmail && t.usrPassword == acc.usrPassword);
 
+                if (usr == null)
+                return false;
+
+                Session["LoggedInAs"] = usr.usrID;
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
+        [HttpPost]
+        public bool Edit(Account acc, HttpPostedFileBase usrpic) {
+            try {
+                if (usrpic != null && usrpic.FileName != null && usrpic.FileName != "") {
+                    if (acc.usrImg != "img/content/user/defaultuser.png") System.IO.File.Delete(Server.MapPath("~/" + acc.usrImg));
+                    acc.usrImg = $"img/content/user/{DateTime.Now.ToShortDateString()}_{Guid.NewGuid().ToString().Replace("-", "")}_{usrpic.FileName}";
+                    usrpic.SaveAs(Server.MapPath("~/" + acc.usrImg));
+                }
+                else {
+                    acc.usrImg = "img/content/user/defaultuser.png";
+                }
+                DBEntities Cord = new DBEntities();
+                Account cUser = Cord.Accounts.First(l => l.usrID == acc.usrID);
+                {
+                    cUser.usrFullName = acc.usrFullName;
+                    cUser.usrEmail = acc.usrEmail;
+                    cUser.usrPassword = acc.usrPassword;
+                    cUser.usrBirthDay = acc.usrBirthDay;
+                    cUser.usrImg = acc.usrImg;
+                    cUser.usrActive = acc.usrActive;
+                    cUser.usrRole = acc.usrRole;
+                }
+                Cord.SaveChanges();
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
+        [HttpPost]
+        public bool Remove(int tempid) {
+            DBEntities Cord = new DBEntities();
+            Account acc = Cord.Accounts.FirstOrDefault(l => l.usrID == tempid);
+
+            try {
+                if (System.IO.File.Exists(Server.MapPath("~/" + acc.usrImg)) && acc.usrImg != "img/content/user/defaultuser.png") {
+                    System.IO.File.Move(Server.MapPath("~/" + acc.usrImg), Server.MapPath("~/" + acc.usrImg.Replace("img/content/user", "img/content/olduser")));
+                    acc.usrImg = acc.usrImg.Replace("img/content/user", "img/content/olduser");
+                    acc.usrRemoved = DateTime.Now;
+                    Cord.SaveChanges();
                 }
 
-                Cord.Accounts.Remove(usr);
+                Cord.Accounts.Remove(acc);
                 Cord.SaveChanges();
                 return true;
             }

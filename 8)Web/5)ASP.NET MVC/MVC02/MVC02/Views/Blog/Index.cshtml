@@ -1,14 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/_Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using MVC02.Models
-@model List<Article>
+@model List<MVC02.Models.Article>
 
 @section Main{
-    @foreach (Article item in Model) {
+    @foreach (var item in Model) {
         <div class="single-products-catagory clearfix">
             <a href="show">
                 <img src="/@item.artImage" alt="">

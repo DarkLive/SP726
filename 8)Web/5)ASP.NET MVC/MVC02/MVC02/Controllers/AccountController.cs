@@ -25,10 +25,11 @@ namespace MVC02.Controllers {
                     acc.usrImg = $"img/content/user/{DateTime.Now.ToShortDateString()}_{Guid.NewGuid().ToString().Replace("-", "")}_{usrpic.FileName}";
                     usrpic.SaveAs(Server.MapPath("~/" + acc.usrImg));
                 }
-
                 DBEntities Cord = new DBEntities();
                 Cord.Accounts.Add(acc);
                 Cord.SaveChanges();
+
+                Session["LoggedInAs"] = acc.usrID;
                 return true;
             }
             catch {
@@ -42,11 +43,14 @@ namespace MVC02.Controllers {
             try {
                 Account usr = (new DBEntities()).Accounts.FirstOrDefault(t => t.usrEmail == acc.usrEmail && t.usrPassword == acc.usrPassword);
 
-                if (usr == null)
-                return false;
+                if (usr == null) {
+                    return false;
+                }
+                else {
+                    Session["LoggedInAs"] = usr.usrID;
+                    return true;
+                }
 
-                Session["LoggedInAs"] = usr.usrID;
-                return true;
             }
             catch {
                 return false;
@@ -103,6 +107,10 @@ namespace MVC02.Controllers {
             catch {
                 return false;
             }
+        }
+
+        public void Logout() {
+            Session["LoggedInAs"] = null;
         }
     }
 }

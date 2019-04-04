@@ -1,9 +1,9 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/_Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using MVC02.Models
+
 @model MVC02.Models.Account
 
 @{ var Cord = new DBEntities().Accounts.ToList(); }
@@ -74,7 +74,7 @@
                     cache: false,
                     processData: false,
                     success: function (isdone) {
-                        if (isdone) {
+                        if (isdone == "True") {
                             alert("Update Complete");
                             window.location.replace("/Account/Index");
                         } else {
@@ -87,6 +87,7 @@
                 });
             });
 
+            //Etc
             $(".showpass").click(function () {
                 if ($(".upwd").attr("type") == "text") {
                     $(".upwd").attr("type", "password");
@@ -110,7 +111,7 @@
                     type: "POST",
                     data: { tempid: tempid },
                     success: function (isdone) {
-                        if (isdone) {
+                        if (isdone == "True") {
                             window.location.reload();
                         } else {
                             alert("Error on Deactivation.");

@@ -6,7 +6,7 @@
 
 @model MVC02.Models.Account
 
-@{ var Cord = new DBEntities().Accounts.ToList(); }
+@{ var Cord = new MVC02.Models.DBEntities().Accounts.ToList(); }
 
 @section Main{
     <table class="table">
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Account item in Cord) {
+            @foreach (MVC02.Models.Account item in Cord) {
                 <tr>
                     <th scope="row">@item.usrID</th>
                     <th scope="row"><img style="height:30px" src="/@item.usrImg" /></th>

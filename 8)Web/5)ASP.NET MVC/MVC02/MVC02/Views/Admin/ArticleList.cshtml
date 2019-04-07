@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MVC02.Models.Article>
+
+@{
+    ViewBag.Title = "ArticleList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Main{
+    <h2>ArticleList</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.artTitle)</th>
+            <th>@Html.DisplayNameFor(model => model.artText)</th>
+            <th>@Html.DisplayNameFor(model => model.artPublishDate)</th>
+            <th>@Html.DisplayNameFor(model => model.artUpdateDate)</th>
+            <th>@Html.DisplayNameFor(model => model.artImage)</th>
+            <th>@Html.DisplayNameFor(model => model.artActive)</th>
+            <th>@Html.DisplayNameFor(model => model.Account.usrFullName)</th>
+            <th>&nbsp;</th>
+        </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.artTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.artText)</td>
+                <td>@Html.DisplayFor(modelItem => item.artPublishDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.artUpdateDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.artImage)</td>
+                <td>@Html.DisplayFor(modelItem => item.artActive)</td>
+                <td>@Html.DisplayFor(modelItem => item.Account.usrFullName)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Article/Edit", new { id = item.artID }) |
+                    @Html.ActionLink("Details", "Article/Details", new { id = item.artID }) |
+                    @Html.ActionLink("Remove", "Article/Remove", new { id = item.artID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

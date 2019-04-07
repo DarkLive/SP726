@@ -1,0 +1,42 @@
+﻿@model MVC02.Models.Article
+
+@{
+    ViewBag.Title = "ArticleDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Main{
+    <h2>ArticleDetails</h2>
+
+    <div>
+        <h4>Article</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.artTitle)</dt>
+            <dd>@Html.DisplayFor(model => model.artTitle)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.artText)</dt>
+            <dd>@Html.DisplayFor(model => model.artText)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.artPublishDate)</dt>
+            <dd>@Html.DisplayFor(model => model.artPublishDate)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.artUpdateDate)</dt>
+            <dd>@Html.DisplayFor(model => model.artUpdateDate)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.artImage)</dt>
+            <dd>@Html.DisplayFor(model => model.artImage)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.artActive)</dt>
+            <dd>@Html.DisplayFor(model => model.artActive)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Account.usrFullName)</dt>
+            <dd>@Html.DisplayFor(model => model.Account.usrFullName)</dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Article/Edit", new { id = Model.artID }) |
+        @Html.ActionLink("Back to List", "Article")
+    </p>
+}

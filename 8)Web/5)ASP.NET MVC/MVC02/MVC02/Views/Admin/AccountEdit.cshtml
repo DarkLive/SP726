@@ -1,0 +1,134 @@
+﻿@model MVC02.Models.Account
+
+@{
+    ViewBag.Title = "AccountEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Main{
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "editForm", id = "editForm", enctype = "multipart/form-data" })) {
+        @Html.AntiForgeryToken()
+        <br />
+        <section class="form-horizontal">
+            <h4>Account</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.usrID)
+            <section class="col-9 float-left">
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrFullName, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBoxFor(m => m.usrFullName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrFullName, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrEmail, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBoxFor(m => m.usrEmail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrEmail, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrPassword, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBoxFor(m => m.usrPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrPassword, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrBirthDay, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBoxFor(m => m.usrBirthDay, Model.usrBirthDay.ToString("yyyy-MM-dd"), new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrBirthDay, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrRegistered, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBoxFor(m => m.usrRegistered, Model.usrRegistered.ToString("yyyy-MM-dd"), new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrRegistered, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrRemoved, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBoxFor(m => m.usrRemoved, Model.usrRemoved.HasValue ? Model.usrRemoved.Value.ToString("yyyy-MM-dd") : "", new { @type = "date", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrRemoved, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrImg, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBox("usrpic", null, new { @type = "file", title = Model.usrImg, @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrImg, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrActive, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        <section class="checkbox">
+                            @Html.CheckBoxFor(m => m.usrActive, new { @class = "form-check" })
+                            @Html.ValidationMessageFor(m => m.usrActive, "", new { @class = "text-danger" })
+                        </section>
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    @Html.LabelFor(m => m.usrRole, new { @class = "control-label col-md-2" })
+                    <section class="col-md-10">
+                        @Html.TextBoxFor(m => m.usrRole, new { @type = "number", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usrRole, "", new { @class = "text-danger" })
+                    </section>
+                </section>
+
+                <section class="form-group">
+                    <section class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary" /> |
+                        @Html.ActionLink("Back to List", "Account", null, new { @class = "btn btn-default" })
+                    </section>
+                </section>
+
+            </section>
+            <section class="col-3 float-left"><img src="/@Model.usrImg" alt="@Model.usrFullName" /></section>
+        </section>
+    }
+}
+
+@section Source{
+    <script>
+        $(document).ready(function () {
+            $("#editForm").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/Admin/AccEdit",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (isdone) {
+                        if (isdone == "True") {
+                            alert("Update Complete");
+                            window.location.replace("/Admin/Account");
+                        } else {
+                            alert("Problem.");
+                        }
+                    },
+                    error: function () {
+                        alert("Error");
+                    }
+                });
+            });
+        });
+    </script>
+}

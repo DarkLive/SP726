@@ -1,0 +1,113 @@
+﻿@model MVC02.Models.Article
+
+@{
+    ViewBag.Title = "ArticleEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Main{
+    <h2>ArticleEdit</h2>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm", name = "editForm" })) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Article</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.artID)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.artTitle, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.artTitle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.artTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.artText, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.artText, new { @rows = "7", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.artText, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.artPublishDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("artPublishDate", Model.artPublishDate.ToString("yyyy-MM-dd"), new { @type = "date", @class = "form-control disabled" })
+                    @Html.ValidationMessageFor(m => m.artPublishDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.artUpdateDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("artUpdateDate", DateTime.Now.ToString("yyyy-MM-dd"), new { @type = "date", @class = "form-control disabled" })
+                    @Html.ValidationMessageFor(m => m.artUpdateDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.artImage, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.artImage, new { @type = "file", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.artImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.artActive, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.artActive)
+                        @Html.ValidationMessageFor(m => m.artActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+
+@section Source{
+    <script>
+        $(document).ready(function () {
+            $("#editForm").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/Admin/ArtEdit",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (isdone) {
+                        if (isdone == "True") {
+                            alert("Update Complete");
+                            window.location.replace("/Admin/Article");
+                        } else {
+                            alert("Problem.");
+                        }
+                    },
+                    error: function () {
+                        alert("Error");
+                    }
+                });
+            });
+        });
+    </script>
+
+    ArtEdit
+}

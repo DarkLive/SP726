@@ -1,4 +1,4 @@
-﻿<nav class="navbar navbar-expand-lg navbar-collapse navbar-light bg-light">
+﻿<nav class="navbar navbar-expand-md navbar-collapse navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler01" aria-controls="navbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,8 +15,7 @@
         @{if (Session["LoggedInAs"] == null) {
                 <button type="button" class="btn btn-success m-1" data-toggle="modal" data-target="#modalLog">Login</button>
                 <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modalReg">Register</button>
-            }
-            else {
+            } else {
                 <button type="button" id="logOut" class="btn btn-secondary m-1">Logout</button>
             }
         }
@@ -27,49 +26,44 @@
     $(document).ready(function () {
 
         //Login
-        $("#LoginForm").submit(function (e) {
+        $("#loginForm").submit(function (e) {
             e.preventDefault();
 
             $.ajax({
                 url: "/Account/Login",
-                type: "POST",
+                method: "POST",
                 data: new FormData(this),
-                contentType:false,
-                cache:false,
+                contentType: false,
+                cache: false,
                 processData: false,
                 success: function (isdone) {
-                    if (isdone == "True")
-                    {
+                    if (isdone == "True") {
                         alert("Logged In");
                         location.reload();
-                    }
-                    else
-                    {
-                        alert("Problem");
-                    }
+                    } else { alert("Problem"); }
                 },
-                error: function(){ alert("Error"); }
+                error: function () { alert("Error"); }
             });
         });
 
         //Register
-        $("#RegisterForm").submit(function (e) {
+        $("#registerForm").submit(function (e) {
             e.preventDefault();
 
             $.ajax({
                 url: "/Account/Register",
-                type: "POST",
+                method: "POST",
                 data: new FormData(this),
-                contentType:false,
-                cache:false,
+                contentType: false,
+                cache: false,
                 processData: false,
-                success: function(isdone){
+                success: function (isdone) {
                     if (isdone == "True") {
                         alert("Registered");
                         location.reload();
-                    }else{ alert("Problem"); }
+                    } else { alert("Problem"); }
                 },
-                error: function(){ alert("Error"); }
+                error: function () { alert("Error"); }
             });
         });
 
@@ -77,22 +71,24 @@
         $("#logOut").click(function () {
             $.ajax({
                 url: "/Account/Logout",
+                method: "POST",
+                success: function () { location.reload(); },
+                error: function () { alert("Error"); }
             })
-            location.reload();
         });
 
-            //Etc
-            $(".shownavpass").click(function () {
-                if ($(".upwd").attr("type") == "text") {
-                    $(".upwd").attr("type", "password");
-                    $(this).text("Hide");
-                }
-                else {
-                    $(".upwd").attr("type", "text");
-                    $(this).text("Show");
-                }
-            });
+        //Etc
+        $(".shownavpass").click(function () {
+            if ($(".upwd").attr("type") == "text") {
+                $(".upwd").attr("type", "password");
+                $(this).text("Hide");
+            }
+            else {
+                $(".upwd").attr("type", "text");
+                $(this).text("Show");
+            }
         });
+    });
 </script>
 @{if (Session["LoggedInAs"] == null) {
         <section class="modal" id="modalLog" tabindex="-1" role="dialog" aria-labelledby="modalLogLabel" aria-hidden="true">
@@ -104,7 +100,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </section>
-                    <form name="LoginForm" id="LoginForm" enctype="multipart/form-data">
+                    <form name="loginForm" id="loginForm" enctype="multipart/form-data">
                         <section class="modal-body">
                             Email: <input name="usrEmail" type="email" class="form-control w-50" />
                             Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button>
@@ -127,7 +123,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </section>
-                    <form name="RegisterForm" id="RegisterForm" enctype="multipart/form-data" method="post" action="#">
+                    <form name="registerForm" id="registerForm" enctype="multipart/form-data">
                         <section class="modal-body">
                             Full Name: <input name="usrFullName" type="text" class="form-control w-50" />
                             Email: <input name="usrEmail" type="email" class="form-control w-50" />

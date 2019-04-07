@@ -9,17 +9,12 @@
 @section Main{
     @foreach (var item in Model) {
         <div class="single-products-catagory clearfix">
-            <a href="show">
+            <a href="@Url.Action("Details", "Blog/Details", new { id = item.artID })">
                 <img src="/@item.artImage" alt="">
                 <!-- Hover Content -->
                 <div class="hover-content">
                     <div class="line"></div>
-                    <h4>@item.artTitle</h4>
-                    @{ 
-                        foreach (var item in collection) {
-
-                        }
-                    }
+                    <h4 class="rounded p-2 text-light" style="background-color: rgba(52, 52, 52, 0.50);">@item.artTitle</h4>
                 </div>
             </a>
         </div>

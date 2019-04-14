@@ -1,0 +1,37 @@
+﻿@model int
+@using MVC02.Models
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    DBEntities Cord = new DBEntities();
+    var temp = Cord.Articles.Join(Cord.Rel_Article_Category, art => art.artID, rel => rel.relArtID, (art, rel) => new { art, rel }).Where(m => m.rel.relCatID == Model).ToList();
+}
+
+@section Main{
+    <section class="col-11">
+        <h3 class="d-block text-center">@temp[0].rel.Category.catName</h3>
+        <hr />
+        @{foreach (var item in temp) {
+                TimeSpan X = @DateTime.Now - @item.art.artPublishDate;
+                <a href="/Article/Details/@item.art.artID">
+                    <section class="col clearfix my-4 mx-5">
+                        <section class="col-2 float-left"><img src="/@item.art.artImage" class="rounded" style="height:12rem; width:100%;" /></section>
+                        <section class="col-10 float-left" style="height:13rem;">
+                            <h3 class="mt-4">@item.art.artTitle</h3>
+                            <h5>@item.art.artText.Substring(0, item.art.artText.IndexOf(".") + 1)</h5>
+                            <p>
+                                @{if (item.art.artUpdateDate > item.art.artPublishDate) { @Html.Label("Updated", new { @class = "mr-2" }) @item.art.artUpdateDate.ToShortDateString()
+                            } else { @Html.Label("Published", new { @class = "mr-2" }) @item.art.artPublishDate.ToShortDateString() }
+                                }
+                            </p>
+                        </section>
+                    </section>
+                </a>
+            }
+        }
+    </section>
+}

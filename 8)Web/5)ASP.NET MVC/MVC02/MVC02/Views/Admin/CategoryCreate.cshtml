@@ -1,39 +1,32 @@
 ﻿@model MVC02.Models.Category
 
 @{
-    ViewBag.Title = "CategoryCreate";
+    ViewBag.Title = "Create Category";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Main{
-    <h2>CategoryCreate</h2>
-
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm", name = "createForm" })) {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Category</h4>
-            <hr />
+        <section class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
+            <section class="form-group">
                 @Html.LabelFor(model => model.catName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <section class="col-md-10">
                     @Html.EditorFor(model => model.catName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.catName, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                </section>
+            </section>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
+            <section class="form-group">
+                <section class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "Category")
+                </section>
+            </section>
+        </section>
     }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 }
 
 @section Source{

@@ -1,27 +1,44 @@
-﻿<nav class="navbar navbar-expand-md navbar-collapse navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler01" aria-controls="navbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarToggler01">
-        <a class="navbar-brand" href="#">Website Name</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
+﻿<header class="header-area clearfix">
+    <!-- Close Icon -->
+    <section class="nav-close">
+        <i class="fa fa-close" aria-hidden="true"></i>
+    </section>
+    <!-- Logo -->
+    <section class="logo">
+        <a href="/"><img src="~/img/core-img/logo.png" alt=""></a>
+    </section>
+    <!-- Amado Nav -->
+    <nav class="amado-nav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Articles">Articles</a></li>
+            <li><a href="/Categories">Categories</a></li>
+            @{
+                if (new MVC02.Controllers.RoleCheck().AdminCheckBool(Session["LoggedInAs"])) {
+                    <li><a href="/Admin">Admin Panel</a></li>
+                }
+            }
         </ul>
+    </nav>
+    <!-- Button Group -->
+    <section class="amado-btn-group mt-30 mb-100">
         @{if (Session["LoggedInAs"] == null) {
-                <button type="button" class="btn btn-success m-1" data-toggle="modal" data-target="#modalLog">Login</button>
-                <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modalReg">Register</button>
+                <button type="button" class="btn amado-btn m-1" data-toggle="modal" data-target="#modalLog">Login</button>
+                <button type="button" class="btn amado-btn active m-1" data-toggle="modal" data-target="#modalReg">Register</button>
             } else {
-                <button type="button" id="logOut" class="btn btn-secondary m-1">Logout</button>
+                <button type="button" id="logOut" class="btn amado-btn active m-1">Logout</button>
             }
         }
-    </div>
-</nav>
-<script src="~/js/jquery/jQuery3-3-1.js"></script>
+    </section>
+    <!-- Social Button -->
+    <section class="social-info d-flex justify-content-between">
+        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+    </section>
+</header>
+
 <script>
     $(document).ready(function () {
 
@@ -90,54 +107,3 @@
         });
     });
 </script>
-@{if (Session["LoggedInAs"] == null) {
-        <section class="modal" id="modalLog" tabindex="-1" role="dialog" aria-labelledby="modalLogLabel" aria-hidden="true">
-            <section class="modal-dialog" role="document">
-                <section class="modal-content">
-                    <section class="modal-header">
-                        <h5 class="modal-title" id="modalLogLabel">Edit</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </section>
-                    <form name="loginForm" id="loginForm" enctype="multipart/form-data">
-                        <section class="modal-body">
-                            Email: <input name="usrEmail" type="email" class="form-control w-50" />
-                            Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button>
-                        </section>
-                        <section class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </section>
-                    </form>
-                </section>
-            </section>
-        </section>
-
-        <section class="modal" id="modalReg" tabindex="-1" role="dialog" aria-labelledby="modalRegLabel" aria-hidden="true">
-            <section class="modal-dialog" role="document">
-                <section class="modal-content">
-                    <section class="modal-header">
-                        <h5 class="modal-title" id="modalRegLabel">Edit</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </section>
-                    <form name="registerForm" id="registerForm" enctype="multipart/form-data">
-                        <section class="modal-body">
-                            Full Name: <input name="usrFullName" type="text" class="form-control w-50" />
-                            Email: <input name="usrEmail" type="email" class="form-control w-50" />
-                            Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button><span class="clearfix"></span>
-                            Birthday: <input name="usrBirthDay" type="date" class="form-control w-50" />
-                            Image: <input name="usrpic" type="file" class="form-control w-50" />
-                        </section>
-                        <section class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </section>
-                    </form>
-                </section>
-            </section>
-        </section>
-    }
-}

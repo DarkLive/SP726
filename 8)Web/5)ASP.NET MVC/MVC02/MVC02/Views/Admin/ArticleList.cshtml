@@ -1,43 +1,43 @@
 ﻿@model IEnumerable<MVC02.Models.Article>
 
 @{
-    ViewBag.Title = "ArticleList";
+    ViewBag.Title = "Article Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Main{
-    <h2>ArticleList</h2>
-
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Article/Create", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.artTitle)</th>
-            <th>@Html.DisplayNameFor(model => model.artText)</th>
-            <th>@Html.DisplayNameFor(model => model.artPublishDate)</th>
-            <th>@Html.DisplayNameFor(model => model.artUpdateDate)</th>
-            <th>@Html.DisplayNameFor(model => model.artImage)</th>
-            <th>@Html.DisplayNameFor(model => model.artActive)</th>
-            <th>@Html.DisplayNameFor(model => model.Account.usrFullName)</th>
-            <th>&nbsp;</th>
-        </tr>
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.artTitle)</th>
+                <th>@Html.DisplayNameFor(m => m.artText)</th>
+                <th>@Html.DisplayNameFor(m => m.Account.usrFullName)</th>
+                <th>@Html.DisplayNameFor(m => m.artPublishDate)</th>
+                <th>@Html.DisplayNameFor(m => m.artUpdateDate)</th>
+                <th>@Html.DisplayNameFor(m => m.artImage)</th>
+                <th>@Html.DisplayNameFor(m => m.artActive)</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
 
         @foreach (var item in Model) {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.artTitle)</td>
-                <td>@Html.DisplayFor(modelItem => item.artText)</td>
-                <td>@Html.DisplayFor(modelItem => item.artPublishDate)</td>
-                <td>@Html.DisplayFor(modelItem => item.artUpdateDate)</td>
-                <td>@Html.DisplayFor(modelItem => item.artImage)</td>
-                <td>@Html.DisplayFor(modelItem => item.artActive)</td>
-                <td>@Html.DisplayFor(modelItem => item.Account.usrFullName)</td>
-                <td>
-                    @Html.ActionLink("Edit", "Article/Edit", new { id = item.artID }) |
-                    @Html.ActionLink("Details", "Article/Details", new { id = item.artID }) |
-                    @Html.ActionLink("Remove", "Article/Remove", new { id = item.artID })
-                </td>
-            </tr>
+    <tr>
+        <td>@item.artTitle</td>
+        <td>"@item.artText.Substring(0, item.artText.IndexOf(".") + 1).." (more on details)</td>
+        <td>@item.Account.usrFullName</td>
+        <td>@item.artPublishDate</td>
+        <td>@item.artUpdateDate</td>
+        <td><img src="/@item.artImage" class="rounded" style="height:70px" /></td>
+        <td>@item.artActive</td>
+        <td>
+            @Html.ActionLink("Details", "Article/Details", new { id = item.artID }) |
+            @Html.ActionLink("Edit", "Article/Edit", new { id = item.artID }) |
+            @Html.ActionLink("Remove", "Article/Remove", new { id = item.artID })
+        </td>
+    </tr>
         }
 
     </table>

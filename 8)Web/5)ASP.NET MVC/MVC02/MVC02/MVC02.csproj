@@ -127,11 +127,11 @@
     <Content Include="img\bg-img\cart1.jpg" />
     <Content Include="img\bg-img\cart2.jpg" />
     <Content Include="img\bg-img\cart3.jpg" />
+    <Content Include="img\content\user\defaultuser.png" />
     <Content Include="img\core-img\cart.png" />
     <Content Include="img\core-img\favicon.ico" />
     <Content Include="img\core-img\favorites.png" />
     <Content Include="img\core-img\logo.png" />
-    <Content Include="img\core-img\logo2.png" />
     <Content Include="img\core-img\paypal.png" />
     <Content Include="img\core-img\search.png" />
     <Content Include="img\product-img\pro-big-1.jpg" />
@@ -169,7 +169,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\RoleCheck.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,9 +231,9 @@
     <Content Include="scss\_responsive.scss" />
     <Content Include="scss\_theme_color.scss" />
     <Content Include="scss\_variables.scss" />
-    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Shared\-Nav.cshtml" />
-    <Content Include="Views\Blog\Details.cshtml" />
+    <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Admin\AccountRemove.cshtml" />
     <Content Include="Views\Admin\AccountList.cshtml" />
     <Content Include="Views\Admin\AccountDetails.cshtml" />
@@ -245,6 +246,11 @@
     <Content Include="Views\Admin\CategoryList.cshtml" />
     <Content Include="Views\Admin\CategoryCreate.cshtml" />
     <Content Include="Views\Admin\CategoryEdit.cshtml" />
+    <Content Include="Views\Article\ListView.cshtml" />
+    <Content Include="Views\Article\ListCategories.cshtml" />
+    <Content Include="Views\Article\ListCategoryItems.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -255,8 +261,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\content\article\" />
-    <Folder Include="img\content\user\" />
-    <Folder Include="Views\_Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

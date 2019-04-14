@@ -1,0 +1,29 @@
+﻿@model List<MVC02.Models.Article>
+
+@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Main{
+    <section class="col-11 mt-2 mx-auto">
+        @{ foreach (var item in Model) {
+                TimeSpan X = @DateTime.Now - @item.artPublishDate;
+                <a href="/Article/Details/@item.artID">
+                    <section class="col clearfix my-4 mx-5">
+                        <section class="col-2 float-left"><img src="@item.artImage" class="rounded" style="height:12rem; width:100%;" /></section>
+                        <section class="col-10 float-left" style="height:10rem;">
+                            <h3 class="mt-4">@item.artTitle</h3>
+                            <h5>@item.artText.Substring(0, item.artText.IndexOf(".") + 1)</h5>
+                            <p>
+                                @{if (item.artUpdateDate > item.artPublishDate) { @Html.Label("Updated", new { @class = "mr-2" }) @item.artUpdateDate.ToShortDateString()
+                            } else { @Html.Label("Published", new { @class = "mr-2" }) @item.artPublishDate.ToShortDateString() }
+                                }
+                            </p>
+                        </section>
+                    </section>
+                </a>
+            }
+        }
+    </section>
+}

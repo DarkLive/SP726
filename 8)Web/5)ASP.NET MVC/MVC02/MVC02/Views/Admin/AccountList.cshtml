@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<MVC02.Models.Account>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Account Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Main{
     <table class="table">
-        <thead class="thead-dark rounded">
+        <thead class="thead-dark">
             <tr>
                 <th>@Html.DisplayNameFor(m => m.usrFullName)</th>
                 <th>@Html.DisplayNameFor(m => m.usrEmail)</th>
@@ -25,16 +25,16 @@
             <tr>
                 <td>@item.usrFullName</td>
                 <td>@item.usrEmail</td>
-                <td>@item.usrPassword</td>
+                <td>Hidden</td>
                 <td>@item.usrBirthDay.ToString("dd/MM/yyyy")</td>
                 <td>@item.usrRegistered</td>
                 <td>@item.usrRemoved</td>
-                <td><img src="\@item.usrImg" style="height:70px" /></td>
+                <td><img src="\@item.usrImg" class="rounded" style="height:70px" /></td>
                 <td>@item.usrActive</td>
                 <td>@item.usrRole</td>
                 <td>
-                    @Html.ActionLink("Edit", "Account/Edit", new { id = item.usrID })
-                    @Html.ActionLink("Details", "Account/Details", new { id = item.usrID })
+                    @Html.ActionLink("Details", "Account/Details", new { id = item.usrID }) |
+                    @Html.ActionLink("Edit", "Account/Edit", new { id = item.usrID }) |
                     @Html.ActionLink("Remove", "Account/Remove", new { id = item.usrID })
                 </td>
             </tr>

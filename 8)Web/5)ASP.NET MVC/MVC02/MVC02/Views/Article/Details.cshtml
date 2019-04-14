@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Article Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MVC02.Models.Article
+
+@section Main{
+    <section class="col-12">
+        <h3 class="d-block text-center">@Model.artTitle</h3>
+        <hr />
+        <section class="row">
+            <section class="float-left col-2">
+                <img class="img-fluid rounded" src="\@Model.artImage" alt="@Model.artTitle">
+            </section>
+            <p class="col-10">@Model.artText</p>
+
+            <br />
+        </section>
+        <hr />
+        <p class="col-6 float-left">
+            Writer: @Model.Account.usrFullName <br />
+            Publish Date: @Model.artPublishDate.ToString("dd/MM/yyyy hh:mm tt") <br />
+            @{ if (Model.artUpdateDate > Model.artPublishDate) { <span>Update Date: @Model.artUpdateDate.ToString("dd/MM/yyyy hh:mm tt")</span> } }
+        </p>
+        <p class="col-6 float-left">
+            Categories:<br />
+            @{
+                foreach (MVC02.Models.Rel_Article_Category item in ViewBag.Rel) {
+                    <span>@item.Category.catName &nbsp;</span>
+                    <br />
+                }
+            }
+        </p>
+    </section>
+}

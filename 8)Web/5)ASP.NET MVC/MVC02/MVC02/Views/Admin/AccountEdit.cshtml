@@ -1,7 +1,7 @@
 ﻿@model MVC02.Models.Account
 
 @{
-    ViewBag.Title = "AccountEdit";
+    ViewBag.Title = "Edit Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,10 +9,7 @@
 
     @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "editForm", id = "editForm", enctype = "multipart/form-data" })) {
         @Html.AntiForgeryToken()
-        <br />
         <section class="form-horizontal">
-            <h4>Account</h4>
-            <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(m => m.usrID)
             <section class="col-9 float-left">

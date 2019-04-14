@@ -1,57 +1,54 @@
 ﻿@model MVC02.Models.Account
 
 @{
-    ViewBag.Title = "Remove";
+    ViewBag.Title = "Deactivate Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Main{
-    <h2>Remove</h2>
+    <section class="col-9 float-left">
+            <h3 class="alert alert-danger rounded">Are you sure you want to deactivate this account?</h3>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(m => m.usrFullName)</dt>
+                <dd>@Html.DisplayFor(m => m.usrFullName)</dd>
 
-    <h3>Are you sure you want to delete this?</h3>
-    <section>
-        <h4>Account</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>@Html.DisplayNameFor(m => m.usrFullName)</dt>
-            <dd>@Html.DisplayFor(m => m.usrFullName)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrEmail)</dt>
+                <dd>@Html.DisplayFor(m => m.usrEmail)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.usrEmail)</dt>
-            <dd>@Html.DisplayFor(m => m.usrEmail)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrPassword)</dt>
+                <dd>@Html.DisplayFor(m => m.usrPassword)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.usrPassword)</dt>
-            <dd>@Html.DisplayFor(m => m.usrPassword)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrBirthDay)</dt>
+                <dd>@Html.DisplayFor(m => m.usrBirthDay)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.usrBirthDay)</dt>
-            <dd>@Html.DisplayFor(m => m.usrBirthDay)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrRegistered)</dt>
+                <dd>@Html.DisplayFor(m => m.usrRegistered)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.usrRegistered)</dt>
-            <dd>@Html.DisplayFor(m => m.usrRegistered)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrRemoved)</dt>
+                <dd>@Html.DisplayFor(m => m.usrRemoved)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.usrRemoved)</dt>
-            <dd>@Html.DisplayFor(m => m.usrRemoved)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrImg)</dt>
+                <dd>@Html.DisplayFor(m => m.usrImg)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.usrImg)</dt>
-            <dd>@Html.DisplayFor(m => m.usrImg)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrActive)</dt>
+                <dd>@Html.DisplayFor(m => m.usrActive)</dd>
 
-            <dt>@Html.DisplayNameFor(m => m.usrActive)</dt>
-            <dd>@Html.DisplayFor(m => m.usrActive)</dd>
+                <dt>@Html.DisplayNameFor(m => m.usrRole)</dt>
+                <dd>@Html.DisplayFor(m => m.usrRole)</dd>
+            </dl>
 
-            <dt>@Html.DisplayNameFor(m => m.usrRole)</dt>
-            <dd>@Html.DisplayFor(m => m.usrRole)</dd>
-        </dl>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "remForm", name = "remForm" })) {
+                @Html.AntiForgeryToken()
 
-        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "remForm", name = "remForm" })) {
-            @Html.AntiForgeryToken()
+                <section class="form-actions no-color">
+                    @Html.HiddenFor(m => m.usrID)
 
-            <section class="form-actions no-color">
-                @Html.HiddenFor(m => m.usrID)
-
-                <input type="submit" value="Confirm" class="btn btn-primary" /> |
-                @Html.ActionLink("Back to List", "Account", null, new { @class = "btn btn-default" })
-            </section>
-        }
+                    <input type="submit" value="Confirm" class="btn btn-danger" /> |
+                    @Html.ActionLink("Back to List", "Account", null, new { @class = "btn btn-default" })
+                </section>
+            }
     </section>
+    <section class="col-3 float-left"><img src="/@Model.usrImg" class="rounded" alt="@Model.usrFullName" /></section>
 }
 
 @section Source{

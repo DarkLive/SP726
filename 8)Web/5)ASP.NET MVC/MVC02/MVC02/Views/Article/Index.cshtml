@@ -1,23 +1,22 @@
-﻿
+﻿@model List<MVC02.Models.Article>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model List<MVC02.Models.Article>
-
 @section Main{
     @foreach (var item in Model) {
-        <div class="single-products-catagory clearfix">
-            <a href="@Url.Action("Details", "Blog/Details", new { id = item.artID })">
+        <section class="single-products-catagory clearfix">
+            <a href="/Article/Details/@item.artID">
                 <img src="/@item.artImage" alt="">
                 <!-- Hover Content -->
-                <div class="hover-content">
-                    <div class="line"></div>
+                <section class="hover-content">
+                    <section class="line"></section>
                     <h4 class="rounded p-2 text-light" style="background-color: rgba(52, 52, 52, 0.50);">@item.artTitle</h4>
-                </div>
+                </section>
             </a>
-        </div>
+        </section>
     }
 }
 

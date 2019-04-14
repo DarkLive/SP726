@@ -1,32 +1,29 @@
 ﻿@model IEnumerable<MVC02.Models.Category>
 
 @{
-    ViewBag.Title = "CategoryList";
+    ViewBag.Title = "Category Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Main{
-    <h2>CategoryList</h2>
-
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Category/Create", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.catName)
-            </th>
-            <th></th>
-        </tr>
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.catName)</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
 
         @foreach (var item in Model) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.catName)
+                    @item.catName
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Category/Edit", new { id = item.catID }) |
-                    @Html.ActionLink("Details", "Category/Details", new { id = item.catID }) |
+                    @Html.ActionLink("Edit", "Category/Edit", new { id = item.catID })
                 </td>
             </tr>
         }

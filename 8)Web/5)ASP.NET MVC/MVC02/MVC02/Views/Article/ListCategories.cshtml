@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Main{
+        <section class="col-12 text-uppercase mt-5 mx-auto">
+            @{
+                var temp = new MVC02.Models.DBEntities().Rel_Article_Category.Where(m => m.relCatID == m.relCatID).GroupBy(m => m.Category.catName).Select(m => new { CatName = m.Key, CatCount = m.Count() }).ToDictionary(name => name.CatName, count => count.CatCount);
+
+                List<int> maxValues = new List<int>() {
+                temp.OrderByDescending(m => m.Value).Max(m=> m.Value),
+                temp.OrderByDescending(m => m.Value).Skip(1).Max(m=> m.Value),
+                temp.OrderByDescending(m => m.Value).Skip(2).Max(m=> m.Value)
+              };
+
+                int counter = 0, countermax = 15;
+                foreach (var item in temp) {
+                    var catid = new MVC02.Models.DBEntities().Categories.First(m => m.catName == item.Key);
+
+                    if (counter > countermax) {
+                        counter = 0; <br /> }
+                    if (item.Value == maxValues[0]) {
+                        <a href="/Category/@catid.catID"><h1 class="m-1 text-success float-left">@item.Key</h1></a>
+                    } else if (item.Value == maxValues[1]) {
+                        <a href="/Category/@catid.catID"><h3 class="m-1 text-warning float-left">@item.Key</h3></a>
+                    } else if (item.Value == maxValues[2]) {
+                        <a href="/Category/@catid.catID"><h4 class="m-1 text-info float-left">@item.Key</h4></a>
+                    } else {
+                        <a href="/Category/@catid.catID"><h6 class="m-1 text-secondary float-left">@item.Key</h6></a>
+                    }
+                    counter++;
+                }
+            }
+        </section>
+}

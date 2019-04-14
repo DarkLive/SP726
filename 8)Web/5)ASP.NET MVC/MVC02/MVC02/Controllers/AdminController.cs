@@ -7,42 +7,35 @@ using MVC02.Models;
 
 namespace MVC02.Controllers {
      public class AdminController : Controller {
-          // GET: Admin
+          [Route("Admin")]
           public ActionResult Index() {
-               return RedirectToAction("Account");
+               RoleAdminCheck();
+               return View();
           }
 
-          public ActionResult RoleCheckUp1() {
-               //TODO THIS
-               int temp = Convert.ToInt32(Session["LoggedInAs"]);
-               return RedirectToAction("Index", "Blog");
-               //var role = new DBEntities().Accounts.First(m => m.usrID == temp);
-
-
-               //if (role.usrRole <= 1) Redirect("Blog");
-          }
+          protected void RoleAdminCheck() => new RoleCheck().AdminCheck(Session["LoggedInAs"]);
 
           [Route("Admin/Account")]
           public ActionResult AccountList() {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Accounts.ToList());
           }
 
           [Route("Admin/Account/Details/{id}")]
           public ActionResult AccountDetails(int id) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Accounts.First(m => m.usrID == id));
           }
 
           [Route("Admin/Account/Remove/{id}")]
           public ActionResult AccountRemove(int? id) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Accounts.First(m => m.usrID == id));
           }
 
           [HttpPost]
           public bool AccRemove(int usrID) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                DBEntities Cord = new DBEntities();
                Account acc = Cord.Accounts.FirstOrDefault(m => m.usrID == usrID);
 
@@ -64,13 +57,13 @@ namespace MVC02.Controllers {
 
           [Route("Admin/Account/Edit/{id}")]
           public ActionResult AccountEdit(int id) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Accounts.First(m => m.usrID == id));
           }
 
           [HttpPost]
           public bool AccEdit(Account acc, HttpPostedFileBase usrpic) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                try {
                     DBEntities Cord = new DBEntities();
                     Account cUser = Cord.Accounts.First(m => m.usrID == acc.usrID);
@@ -121,19 +114,19 @@ namespace MVC02.Controllers {
 
           [Route("Admin/Article")]
           public ActionResult ArticleList() {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Articles.ToList());
           }
 
           [Route("Admin/Article/Create")]
           public ActionResult ArticleCreate() {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new Article());
           }
 
           [HttpPost]
           public bool ArtCreate(Article art, HttpPostedFileBase artpic, int[] selectedCat) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                try {
                     art.artPublishDate = DateTime.Now; art.artUpdateDate = art.artPublishDate; art.artWriter = Convert.ToInt32(Session["LoggedInAs"]);
                     art.artImage = $"img/content/article/{DateTime.Now.ToString("dd.MM.yyyy")}_{Guid.NewGuid().ToString().Replace("-", "")}_{artpic.FileName}";
@@ -161,19 +154,19 @@ namespace MVC02.Controllers {
 
           [Route("Admin/Article/Details/{id}")]
           public ActionResult ArticleDetails(int id) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Articles.First(m => m.artID == id));
           }
 
           [Route("Admin/Article/Edit/{id}")]
           public ActionResult ArticleEdit(int id) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Articles.First(m => m.artID == id));
           }
 
           [HttpPost]
           public bool ArtEdit(Article art, HttpPostedFileBase artpic) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                try {
                     DBEntities Cord = new DBEntities();
                     Article cArticle = Cord.Articles.First(m => m.artID == art.artID);
@@ -196,13 +189,13 @@ namespace MVC02.Controllers {
 
           [Route("Admin/Article/Remove/{id}")]
           public ActionResult ArticleRemove(int id) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Articles.First(m => m.artID == id));
           }
 
           [HttpPost]
           public bool ArtRemove(int artID) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                try {
                     DBEntities Cord = new DBEntities();
                     Article cArt = Cord.Articles.First(m => m.artID == artID);
@@ -215,18 +208,18 @@ namespace MVC02.Controllers {
 
           [Route("Admin/Category")]
           public ActionResult CategoryList() {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Categories.ToList());
           }
 
           [Route("Admin/Category/Create")]
           public ActionResult CategoryCreate() {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new Category());
           }
 
           public bool CatCreate(Category cat) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                try {
                     DBEntities Cord = new DBEntities();
                     Cord.Categories.Add(cat);
@@ -237,12 +230,12 @@ namespace MVC02.Controllers {
 
           [Route("Admin/Category/Edit/{id}")]
           public ActionResult CategoryEdit(int id) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                return View(new DBEntities().Categories.First(m => m.catID == id));
           }
 
           public bool CatEdit(Category cat) {
-               RoleCheckUp1();
+               RoleAdminCheck();
                try {
                     DBEntities Cord = new DBEntities();
                     Category cCat = Cord.Categories.First(m => m.catID == cat.catID);

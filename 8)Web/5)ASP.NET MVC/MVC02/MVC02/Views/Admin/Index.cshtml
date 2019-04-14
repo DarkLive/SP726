@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MVC02.Models
+
+@{ DBEntities Cord = new DBEntities(); }
+
+@section Main{
+    <section class="col-10 mx-auto">
+        <section class="card-group">
+            <section class="card border-info">
+                <section class="card-body">
+                    <h5 class="card-title text-info">Accounts</h5>
+                    <p class="card-text">@Cord.Accounts.Count() Users Registered</p>
+                </section>
+                <a href="/Admin/Account" class="card-footer text-muted">Manage Categories</a>
+            </section>
+
+            <section class="card border-info">
+                <section class="card-body">
+                    <h5 class="card-title text-info">Articles</h5>
+                    <p class="card-text">@Cord.Articles.Count() Articles Published</p>
+                </section>
+                <a href="/Admin/Article" class="card-footer text-muted">Manage Categories</a>
+            </section>
+
+            <section class="card border-info">
+                <section class="card-body">
+                    <h5 class="card-title text-info">Categories</h5>
+                    <p class="card-text">@Cord.Categories.Count() Categories Exists</p>
+                </section>
+                <a href="/Admin/Category" class="card-footer text-muted">Manage Categories</a>
+            </section>
+        </section>
+    </section>
+}

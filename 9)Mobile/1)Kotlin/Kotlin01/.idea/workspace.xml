@@ -18,6 +18,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f7396c0-b1cc-427d-80b9-2c96b1c21988" name="Default Changelist" comment="" />
+    <ignored path=".idea/" />
+    <ignored mask="*.gradle" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +42,7 @@
     <session id="432504920">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.27" value="1" />
@@ -76,14 +78,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="kt" value="663" />
-          <entry key="txt" value="26" />
+          <entry key="txt" value="39" />
           <entry key="xml" value="178" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Kotlin" value="663" />
-          <entry key="PLAIN_TEXT" value="26" />
+          <entry key="PLAIN_TEXT" value="39" />
           <entry key="XML" value="178" />
         </counts>
       </usages-collector>
@@ -2520,7 +2522,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1340" />
@@ -2728,7 +2730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555497234179</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Kotlin01">
+      <created>1555497493815</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1555497493815</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2771,7 +2780,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="git ignore merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="git ignore merge" />
+    <MESSAGE value="Kotlin01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kotlin01" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml">

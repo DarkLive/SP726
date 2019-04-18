@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".MainActivity">
+    <RadioGroup
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/weight" app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="47dp" app:layout_constraintBottom_toBottomOf="@+id/weight"
+            android:layout_marginEnd="14dp">
+        <RadioButton
+                android:text="@string/planet_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r1" android:layout_weight="1"
+                android:checked="true"/>
+        <RadioButton
+                android:text="@string/planet_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r2" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/planet_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r3" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/planet_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r4" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/planet_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r5" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/planet_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r6" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/planet_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r7" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/planet_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r8" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/planet_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/r9" android:layout_weight="1"/>
+    </RadioGroup>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/weight"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            android:layout_marginStart="28dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="218dp" android:hint="@string/numberhint" android:inputType="numberDecimal"/>
+    <TextView
+            android:text="@string/lbl_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/weight" app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            android:layout_marginEnd="126dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+            android:text="@string/app_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" android:layout_marginStart="16dp"/>
+    <Button
+            android:text="@string/btn_sndtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnget"
+            android:layout_marginTop="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/weight" app:layout_constraintEnd_toEndOf="@+id/weight"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            android:layout_marginStart="69dp" android:layout_marginEnd="70dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/output"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="44dp" app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>

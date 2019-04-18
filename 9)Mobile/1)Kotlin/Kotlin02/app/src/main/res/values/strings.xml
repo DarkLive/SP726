@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Your weight on other planets?</string>
+    <string name="app_desc">Your weight on other planets that are in our Solar System?</string>
+    <string name="lbl_weight">Your Weight in Earth?</string>
+    <string name="planet_1">Mercury</string>
+    <string name="planet_2">Venus</string>
+    <string name="planet_3">Earth</string>
+    <string name="planet_4">Mars</string>
+    <string name="planet_5">Jupiter</string>
+    <string name="planet_6">Saturn</string>
+    <string name="planet_7">Uranus</string>
+    <string name="planet_8">Neptune</string>
+    <string name="planet_9">Pluto :(</string>
+    <string name="numberhint">e.g. 61.2</string>
+    <string name="btn_sndtext">Find Out</string>
+</resources>

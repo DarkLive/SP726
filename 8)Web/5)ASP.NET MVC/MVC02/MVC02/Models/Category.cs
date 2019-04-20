@@ -11,8 +11,9 @@ namespace MVC02.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Category
+     using System.ComponentModel.DataAnnotations;
+
+     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
@@ -20,7 +21,9 @@ namespace MVC02.Models
             this.Rel_Article_Category = new HashSet<Rel_Article_Category>();
         }
     
+        [Display(Name = "ID")]
         public int catID { get; set; }
+        [Display(Name = "Name")]
         public string catName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

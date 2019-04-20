@@ -9,7 +9,7 @@ namespace MVC02.Controllers {
      public class ArticleController : Controller {
           [Route("")]
           public ActionResult Index() {
-               return View(new DBEntities().Articles.Where(temp => temp.artActive == true).Take(6).ToList());
+               return View(new DBEntities().Articles.Where(temp => temp.artActive == true).OrderByDescending(m => m.artID).Take(6).ToList());
           }
 
           [Route("Article/Details/{id}")]

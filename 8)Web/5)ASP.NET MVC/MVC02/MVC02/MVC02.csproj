@@ -115,35 +115,9 @@
     <Content Include="css\owl.carousel.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="img\bg-img\1.jpg" />
-    <Content Include="img\bg-img\2.jpg" />
-    <Content Include="img\bg-img\3.jpg" />
-    <Content Include="img\bg-img\4.jpg" />
-    <Content Include="img\bg-img\5.jpg" />
-    <Content Include="img\bg-img\6.jpg" />
-    <Content Include="img\bg-img\7.jpg" />
-    <Content Include="img\bg-img\8.jpg" />
-    <Content Include="img\bg-img\9.jpg" />
-    <Content Include="img\bg-img\cart1.jpg" />
-    <Content Include="img\bg-img\cart2.jpg" />
-    <Content Include="img\bg-img\cart3.jpg" />
     <Content Include="img\content\user\defaultuser.png" />
-    <Content Include="img\core-img\cart.png" />
     <Content Include="img\core-img\favicon.ico" />
-    <Content Include="img\core-img\favorites.png" />
     <Content Include="img\core-img\logo.png" />
-    <Content Include="img\core-img\paypal.png" />
-    <Content Include="img\core-img\search.png" />
-    <Content Include="img\product-img\pro-big-1.jpg" />
-    <Content Include="img\product-img\pro-big-2.jpg" />
-    <Content Include="img\product-img\pro-big-3.jpg" />
-    <Content Include="img\product-img\pro-big-4.jpg" />
-    <Content Include="img\product-img\product1.jpg" />
-    <Content Include="img\product-img\product2.jpg" />
-    <Content Include="img\product-img\product3.jpg" />
-    <Content Include="img\product-img\product4.jpg" />
-    <Content Include="img\product-img\product5.jpg" />
-    <Content Include="img\product-img\product6.jpg" />
     <Content Include="js\active.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\classy-nav.min.js" />
@@ -250,6 +224,8 @@
     <Content Include="Views\Article\ListCategories.cshtml" />
     <Content Include="Views\Article\ListCategoryItems.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="img\content\article\dummyfileforpush" />
+    <Content Include="img\content\olduser\dummyfileforpush" />
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -260,7 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\content\article\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

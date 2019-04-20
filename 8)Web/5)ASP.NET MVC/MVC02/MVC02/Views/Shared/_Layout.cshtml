@@ -15,25 +15,6 @@
     @RenderSection("Source", false)
 </head>
 <body>
-    <!-- Search Wrapper Area Start -->
-    <section class="search-wrapper section-padding-100">
-        <section class="search-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </section>
-        <section class="container">
-            <section class="row">
-                <section class="col-12">
-                    <section class="search-content">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
-                            <button type="submit"><img src="~/img/core-img/search.png" alt=""></button>
-                        </form>
-                    </section>
-                </section>
-            </section>
-        </section>
-    </section>
-    <!-- Search Wrapper Area End -->
     <!-- ##### Main Content Wrapper Start ##### -->
     <section class="main-content-wrapper d-flex clearfix">
 
@@ -121,14 +102,14 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </section>
-                        <form name="loginForm" id="loginForm" enctype="multipart/form-data">
+                        <form name="loginForm" id="loginForm">
                             <section class="modal-body">
                                 Email: <input name="usrEmail" type="email" class="form-control w-50" />
-                                Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button>
+                                Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left upwd" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button>
                             </section>
                             <section class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn amado-btn">Login</button>
+                                <button type="button" class="btn amado-btn active" data-dismiss="modal">Close</button>
                             </section>
                         </form>
                     </section>
@@ -148,13 +129,13 @@
                             <section class="modal-body">
                                 Full Name: <input name="usrFullName" type="text" class="form-control w-50" />
                                 Email: <input name="usrEmail" type="email" class="form-control w-50" />
-                                Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button><span class="clearfix"></span>
+                                Password:<br /><input name="usrPassword" type="password" class="form-control w-50 float-left upwd" />&nbsp;&nbsp;<button type="button" class="form-control float-left w-25 shownavpass">Show</button><span class="clearfix"></span>
                                 Birthday: <input name="usrBirthDay" type="date" class="form-control w-50" />
                                 Image: <input name="usrpic" type="file" class="form-control w-50" />
                             </section>
                             <section class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn amado-btn">Register</button>
+                                <button type="button" class="btn amado-btn active" data-dismiss="modal">Close</button>
                             </section>
                         </form>
                     </section>

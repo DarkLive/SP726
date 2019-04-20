@@ -11,11 +11,15 @@ namespace MVC02.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Rel_Article_Category
+     using System.ComponentModel.DataAnnotations;
+
+     public partial class Rel_Article_Category
     {
+        [Display(Name = "ID")]
         public int ID { get; set; }
+        [Display(Name = "Article Relationship ID")]
         public int relArtID { get; set; }
+        [Display(Name = "Category Relationship ID")]
         public int relCatID { get; set; }
     
         public virtual Article Article { get; set; }
